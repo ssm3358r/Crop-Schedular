@@ -1,12 +1,28 @@
 import { Image } from 'expo-image';
+import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Keyframe, Easing } from 'react-native-reanimated';
 
+import SplashScreen from './SplashScreen';
 import classes from './animated-icon.module.css';
 const DURATION = 300;
 
 export function AnimatedSplashOverlay() {
-  return null;
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(false), 2200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!visible) return null;
+
+  return (
+    <View style={styles.splashOverlay}>
+      <SplashScreen />
+    </View>
+  );
 }
 
 const keyframe = new Keyframe({
@@ -79,6 +95,10 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     position: 'absolute',
     top: 128 / 2 + 138,
+  },
+  splashOverlay: {
+    ...StyleSheet.absoluteFill,
+    zIndex: 1000,
   },
   imageContainer: {
     justifyContent: 'center',
