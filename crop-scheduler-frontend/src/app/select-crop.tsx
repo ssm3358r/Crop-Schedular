@@ -1,4 +1,5 @@
 import { router } from 'expo-router';
+import { Image } from 'expo-image';
 import { SymbolView } from 'expo-symbols';
 import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
@@ -134,8 +135,6 @@ function ChilliPlant() {
 }
 
 function CropCard({ crop }: { crop: (typeof crops)[number] }) {
-  const isCotton = crop.id === 'cotton';
-
   return (
     <Pressable
       style={({ pressed }) => [styles.cropCard, pressed && styles.cardPressed]}
@@ -146,7 +145,17 @@ function CropCard({ crop }: { crop: (typeof crops)[number] }) {
         })
       }>
       <View style={[styles.cropIllustrationWrap, { backgroundColor: crop.tint }]}>
-        {isCotton ? <CottonPlant /> : <ChilliPlant />}
+        <Image
+          source={
+            crop.id === 'cotton'
+              ? require('@/assets/images/crops/cotton.png')
+              : require('@/assets/images/crops/chilli.png')
+          }
+          style={styles.cropPhoto}
+          contentFit="cover"
+          transition={180}
+        />
+        <View style={styles.photoOverlay} />
       </View>
 
       <View style={styles.cropCopy}>
@@ -455,6 +464,18 @@ const styles = StyleSheet.create({
     height: 112,
     justifyContent: 'center',
     overflow: 'hidden',
+  },
+  cropPhoto: {
+    height: '100%',
+    width: '100%',
+  },
+  photoOverlay: {
+    backgroundColor: 'rgba(15, 82, 27, 0.08)',
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
   cropArt: {
     alignItems: 'center',
