@@ -4,16 +4,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const colors = {
-  primary: '#2E7D32',
-  secondary: '#66BB6A',
-  background: '#F8FAF8',
-  accent: '#FFC107',
-  card: '#FFFFFF',
-  text: '#1E293B',
-  muted: '#64748B',
-  line: '#E2ECE2',
-};
+import { colors } from '@/constants/colors';
+import { HeroCard } from '@/components/HeroCard';
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -85,8 +77,8 @@ const categories: Category[] = [
     description: 'Stage-wise nutrition recommendations for better crop growth and yield.',
     features: ['Nutrient Requirements', 'Deficiency Symptoms', 'Dosage', 'FPS Nutrition Products'],
     icon: icons.nutrition,
-    tint: '#EAF7EA',
-    accent: '#2E7D32',
+    tint: colors.mint,
+    accent: colors.primary,
     route: '/nutrition-advisory',
   },
 ];
@@ -109,26 +101,6 @@ function AppIcon({
   color?: string;
 }) {
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
-}
-
-function CropSummaryArt({ crop }: { crop: CropId }) {
-  const isCotton = crop === 'cotton';
-
-  return (
-    <View style={styles.summaryArt}>
-      <View style={styles.summarySun} />
-      <View style={styles.summaryField}>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <View key={index} style={[styles.summaryPlant, { left: 14 + index * 23 }]}>
-            <View style={styles.summaryStem} />
-            <View style={styles.summaryLeafLeft} />
-            <View style={styles.summaryLeafRight} />
-            {isCotton ? <View style={styles.cottonBud} /> : <View style={styles.chilliFruit} />}
-          </View>
-        ))}
-      </View>
-    </View>
-  );
 }
 
 function CategoryIllustration({ category }: { category: Category }) {
@@ -206,17 +178,21 @@ export default function CategorySelectionScreen() {
           </View>
         </View>
 
-        <View style={styles.summaryCard}>
-          <View style={styles.summaryCopy}>
-            <Text style={styles.cropName}>{cropName}</Text>
-            <Text style={styles.stageLabel}>Current Stage</Text>
-            <View style={styles.stagePill}>
-              <AppIcon name={icons.flower} size={16} color={colors.primary} />
-              <Text style={styles.stagePillText}>{stageName}</Text>
-            </View>
-          </View>
-          <CropSummaryArt crop={crop} />
-        </View>
+        <HeroCard
+          eyebrow="Crop Advisory"
+          title={stageName}
+          subtitle={`${cropName} · tailored guidance for this growth stage.`}
+          pills={[
+            {
+              label: cropName,
+              icon: <AppIcon name={icons.advisory} size={14} color="#FFFFFF" />,
+            },
+            {
+              label: stageName,
+              icon: <AppIcon name={icons.flower} size={14} color="#FFFFFF" />,
+            },
+          ]}
+        />
 
         <Text style={styles.question}>What would you like help with today?</Text>
 
@@ -249,7 +225,7 @@ export default function CategorySelectionScreen() {
                 router.push('/');
               }
             }}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7C8A80'} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -259,7 +235,7 @@ export default function CategorySelectionScreen() {
 }
 
 const shadow = {
-  shadowColor: '#1B5E20',
+  shadowColor: colors.shadow,
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -311,141 +287,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     lineHeight: 21,
     marginTop: 5,
-  },
-  summaryCard: {
-    backgroundColor: '#F1FAF1',
-    borderColor: '#DCEEDB',
-    borderRadius: 24,
-    borderWidth: 1,
-    flexDirection: 'row',
-    minHeight: 166,
-    overflow: 'hidden',
-    padding: 18,
-    ...shadow,
-  },
-  summaryCopy: {
-    flex: 1,
-    justifyContent: 'center',
-    zIndex: 2,
-  },
-  cropName: {
-    color: colors.primary,
-    fontSize: 18,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  stageLabel: {
-    color: colors.muted,
-    fontSize: 13,
-    fontWeight: '800',
-    letterSpacing: 0,
-    marginTop: 12,
-    textTransform: 'uppercase',
-  },
-  stagePill: {
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: colors.card,
-    borderRadius: 15,
-    flexDirection: 'row',
-    gap: 7,
-    marginTop: 7,
-    minHeight: 36,
-    paddingHorizontal: 12,
-  },
-  stagePillText: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  summaryArt: {
-    bottom: 0,
-    height: 150,
-    pointerEvents: 'none',
-    position: 'absolute',
-    right: 0,
-    width: 175,
-  },
-  summarySun: {
-    backgroundColor: '#FFD76A',
-    borderRadius: 19,
-    height: 38,
-    position: 'absolute',
-    right: 20,
-    top: 12,
-    width: 38,
-  },
-  summaryField: {
-    backgroundColor: '#CFE9B5',
-    borderTopLeftRadius: 74,
-    bottom: -10,
-    height: 92,
-    overflow: 'hidden',
-    position: 'absolute',
-    right: -12,
-    width: 190,
-  },
-  summaryPlant: {
-    bottom: 15,
-    height: 58,
-    position: 'absolute',
-    width: 22,
-  },
-  summaryStem: {
-    backgroundColor: colors.primary,
-    borderRadius: 3,
-    bottom: 0,
-    height: 37,
-    left: 9,
-    position: 'absolute',
-    width: 5,
-  },
-  summaryLeafLeft: {
-    backgroundColor: colors.primary,
-    borderBottomLeftRadius: 12,
-    borderTopRightRadius: 12,
-    bottom: 20,
-    height: 17,
-    position: 'absolute',
-    right: 11,
-    transform: [{ rotate: '-28deg' }],
-    width: 11,
-  },
-  summaryLeafRight: {
-    backgroundColor: colors.secondary,
-    borderBottomRightRadius: 12,
-    borderTopLeftRadius: 12,
-    bottom: 13,
-    height: 17,
-    left: 11,
-    position: 'absolute',
-    transform: [{ rotate: '28deg' }],
-    width: 11,
-  },
-  cottonBud: {
-    backgroundColor: colors.card,
-    borderColor: '#DDE8DD',
-    borderRadius: 11,
-    borderWidth: 1,
-    height: 22,
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    width: 22,
-  },
-  chilliFruit: {
-    backgroundColor: '#E53935',
-    borderBottomLeftRadius: 11,
-    borderBottomRightRadius: 11,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    height: 29,
-    left: 6,
-    position: 'absolute',
-    top: 1,
-    transform: [{ rotate: '12deg' }],
-    width: 11,
   },
   question: {
     color: colors.text,
@@ -558,7 +399,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: colors.mint,
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -607,7 +448,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-    borderColor: '#DCEADC',
+    borderColor: colors.line,
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -631,7 +472,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-    color: '#7C8A80',
+    color: colors.inactive,
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

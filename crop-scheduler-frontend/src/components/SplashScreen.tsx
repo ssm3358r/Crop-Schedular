@@ -40,7 +40,7 @@ export default function SplashScreen() {
   }));
 
   return (
-    <LinearGradient colors={['#0F6B3E', '#4CAF50']} style={styles.gradient}>
+    <LinearGradient colors={['#1B3D2F', '#1B4332']} style={styles.gradient}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.backgroundArt} pointerEvents="none">
           <LeafOutline style={styles.leafOne} />
