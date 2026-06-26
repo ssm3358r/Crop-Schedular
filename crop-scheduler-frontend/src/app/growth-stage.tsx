@@ -4,21 +4,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
-const colors = {
-  primary: '#0F4D2E',
-  secondary: '#3F7D57',
-  background: '#F7F6F2',
-  accent: '#D6A331',
-  card: '#FFFFFF',
-  text: '#1F2F27',
-  muted: '#6E766F',
-  line: '#E5E2DA',
-};
-=======
 import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -55,55 +42,40 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Early Growth',
       description: 'Healthy seed germination and establishment.',
       icon: icons.nursery,
-<<<<<<< HEAD
-      tint: '#DDEFE5',
-      accent: '#0F4D2E',
-=======
       tint: colors.mint,
       accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Rapid leaf and stem development.',
       icon: icons.stage,
-<<<<<<< HEAD
-      tint: '#DDEFE5',
-      accent: '#3F7D57',
-=======
       tint: colors.mint,
       accent: colors.secondary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'flowering',
       name: 'Flowering Stage',
       description: 'Flower buds and flowering begin.',
       icon: icons.flower,
-      tint: '#FFF3DA',
-      accent: '#B88316',
+      tint: '#FFF8E1',
+      accent: '#D99900',
     },
     {
       id: 'boll-development',
       name: 'Boll Development',
       description: 'Bolls start developing.',
       icon: icons.cotton,
-<<<<<<< HEAD
-      tint: '#F7F6F2',
-      accent: '#6E766F',
-=======
       tint: '#F1F5F9',
       accent: colors.muted,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'boll-maturity',
       name: 'Boll Maturity',
       description: 'Crop is ready for harvesting.',
       icon: icons.basket,
-      tint: '#FFF3DA',
-      accent: '#B88316',
+      tint: '#FFF3E4',
+      accent: '#B7791F',
     },
   ],
   chilli: [
@@ -112,54 +84,39 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Nursery Stage',
       description: 'Strong seedlings begin with careful nursery care.',
       icon: icons.nursery,
-<<<<<<< HEAD
-      tint: '#DDEFE5',
-      accent: '#0F4D2E',
-=======
       tint: colors.mint,
       accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'transplanting',
       name: 'Transplanting',
       description: 'Seedlings move to the main field for establishment.',
       icon: icons.transplant,
-<<<<<<< HEAD
-      tint: '#DDEFE5',
-      accent: '#3F7D57',
-=======
       tint: colors.mint,
       accent: colors.secondary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Leaf, branch and canopy growth accelerates.',
       icon: icons.stage,
-<<<<<<< HEAD
-      tint: '#DDEFE5',
-      accent: '#0F4D2E',
-=======
       tint: colors.mint,
       accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'flowering',
       name: 'Flowering Stage',
       description: 'Flower initiation needs careful crop protection.',
       icon: icons.flower,
-      tint: '#FFF3DA',
-      accent: '#B88316',
+      tint: '#FFF8E1',
+      accent: '#D99900',
     },
     {
       id: 'fruit-setting',
       name: 'Fruit Setting',
       description: 'Flowers convert into young chilli fruits.',
       icon: icons.fruit,
-      tint: '#FFF3DA',
+      tint: '#FFEDE7',
       accent: '#E53935',
     },
     {
@@ -167,7 +124,7 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Fruit Development',
       description: 'Fruit size, color and quality develop.',
       icon: icons.fruit,
-      tint: '#FFF3DA',
+      tint: '#FFF1E8',
       accent: '#F97316',
     },
     {
@@ -175,8 +132,8 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Harvesting',
       description: 'Pick mature fruits at the right marketable stage.',
       icon: icons.basket,
-      tint: '#FFF3DA',
-      accent: '#B88316',
+      tint: '#FFF3E4',
+      accent: '#B7791F',
     },
   ],
 };
@@ -300,11 +257,7 @@ export default function GrowthStageScreen() {
                 router.push('/');
               }
             }}>
-<<<<<<< HEAD
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
-=======
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -314,11 +267,7 @@ export default function GrowthStageScreen() {
 }
 
 const shadow = {
-<<<<<<< HEAD
-  shadowColor: '#0F2E1C',
-=======
   shadowColor: colors.shadow,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -332,19 +281,14 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 0,
+    paddingTop: 12,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
-    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
-    marginHorizontal: -20,
     marginBottom: 18,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -362,170 +306,20 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: '#FFFFFF',
+    color: colors.text,
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: '#DDEFE5',
+    color: colors.muted,
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
     lineHeight: 21,
     marginTop: 5,
   },
-<<<<<<< HEAD
-  headerCard: {
-    backgroundColor: colors.card,
-    borderColor: colors.line,
-    borderRadius: 24,
-    borderWidth: 1,
-    flexDirection: 'row',
-    minHeight: 170,
-    overflow: 'hidden',
-    padding: 18,
-    ...shadow,
-  },
-  headerCopy: {
-    flex: 1,
-    justifyContent: 'center',
-    zIndex: 2,
-  },
-  cropLabel: {
-    color: colors.primary,
-    fontSize: 17,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  headerTitle: {
-    color: colors.text,
-    fontSize: 24,
-    fontWeight: '900',
-    letterSpacing: 0,
-    lineHeight: 30,
-    marginTop: 6,
-  },
-  headerText: {
-    color: colors.muted,
-    fontSize: 14,
-    fontWeight: '700',
-    letterSpacing: 0,
-    lineHeight: 20,
-    marginTop: 6,
-    maxWidth: 185,
-  },
-  cropArt: {
-    bottom: 0,
-    height: 155,
-    pointerEvents: 'none',
-    position: 'absolute',
-    right: 0,
-    width: 185,
-  },
-  artSun: {
-    backgroundColor: '#FFD76A',
-    borderRadius: 20,
-    height: 40,
-    position: 'absolute',
-    right: 20,
-    top: 13,
-    width: 40,
-  },
-  artField: {
-    backgroundColor: '#D4E8C6',
-    borderTopLeftRadius: 78,
-    bottom: -10,
-    height: 94,
-    overflow: 'hidden',
-    position: 'absolute',
-    right: -10,
-    width: 195,
-  },
-  artPlant: {
-    bottom: 14,
-    height: 58,
-    position: 'absolute',
-    width: 22,
-  },
-  artStem: {
-    backgroundColor: colors.primary,
-    borderRadius: 3,
-    bottom: 0,
-    height: 38,
-    left: 9,
-    position: 'absolute',
-    width: 5,
-  },
-  artLeafLeft: {
-    backgroundColor: '#0F4D2E',
-    borderBottomLeftRadius: 12,
-    borderTopRightRadius: 12,
-    bottom: 20,
-    height: 17,
-    position: 'absolute',
-    right: 11,
-    transform: [{ rotate: '-28deg' }],
-    width: 11,
-  },
-  artLeafRight: {
-    backgroundColor: colors.secondary,
-    borderBottomRightRadius: 12,
-    borderTopLeftRadius: 12,
-    bottom: 13,
-    height: 17,
-    left: 11,
-    position: 'absolute',
-    transform: [{ rotate: '28deg' }],
-    width: 11,
-  },
-  artCotton: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#DDE8DD',
-    borderRadius: 11,
-    borderWidth: 1,
-    height: 22,
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    width: 22,
-  },
-  artChilli: {
-    backgroundColor: '#E53935',
-    borderBottomLeftRadius: 11,
-    borderBottomRightRadius: 11,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    height: 28,
-    left: 6,
-    position: 'absolute',
-    top: 1,
-    transform: [{ rotate: '12deg' }],
-    width: 11,
-  },
-  artChilliAlt: {
-    transform: [{ rotate: '-16deg' }],
-  },
-  cropBadge: {
-    alignItems: 'center',
-    backgroundColor: '#DDEFE5',
-    borderRadius: 14,
-    bottom: 16,
-    justifyContent: 'center',
-    minHeight: 30,
-    paddingHorizontal: 12,
-    position: 'absolute',
-    right: 18,
-  },
-  cropBadgeText: {
-    color: colors.primary,
-    fontSize: 12,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   sectionHeader: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -558,11 +352,7 @@ const styles = StyleSheet.create({
   },
   timelineDot: {
     backgroundColor: colors.primary,
-<<<<<<< HEAD
-    borderColor: '#DDEFE5',
-=======
     borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 9,
     borderWidth: 4,
     height: 18,
@@ -571,11 +361,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   timelineLine: {
-<<<<<<< HEAD
-    backgroundColor: '#D8D5CC',
-=======
     backgroundColor: colors.badge,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     flex: 1,
     marginTop: -1,
     width: 2,
@@ -640,11 +426,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-<<<<<<< HEAD
-    backgroundColor: '#DDEFE5',
-=======
     backgroundColor: colors.mint,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 17,
     height: 34,
     justifyContent: 'center',
@@ -654,11 +436,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-<<<<<<< HEAD
-    borderColor: '#E5E2DA',
-=======
     borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -682,11 +460,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-<<<<<<< HEAD
-    color: '#7A8079',
-=======
     color: colors.inactive,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

@@ -52,7 +52,7 @@ type RawNutritionStage = {
   days?: string;
   whatHappens?: string;
   objective?: string;
-  nutrientRequirements?: Array<{ name: string; purpose: string }>;
+  nutrientRequirements?: { name: string; purpose: string }[];
   importance?: string[];
   deficiencySymptoms?: Record<string, string[]>;
   management?: string[];

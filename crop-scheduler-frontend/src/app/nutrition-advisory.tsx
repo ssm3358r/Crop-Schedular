@@ -4,19 +4,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
-const colors = {
-  primary: '#0F4D2E',
-  background: '#F7F6F2',
-  card: '#FFFFFF',
-  text: '#1F2F27',
-  muted: '#6E766F',
-  line: '#E5E2DA',
-};
-=======
 import { HeroCard } from '@/components/HeroCard';
 import { colors } from '@/constants/colors';
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   back: { ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' },
@@ -71,11 +60,7 @@ export default function NutritionAdvisoryScreen() {
 }
 
 const shadow = {
-<<<<<<< HEAD
-  shadowColor: '#0F2E1C',
-=======
   shadowColor: colors.shadow,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -98,36 +83,5 @@ const styles = StyleSheet.create({
   },
   heroCard: {
     marginTop: 24,
-<<<<<<< HEAD
-    padding: 24,
-    ...shadow,
-  },
-  iconWrap: {
-    alignItems: 'center',
-    backgroundColor: '#DDEFE5',
-    borderRadius: 28,
-    height: 76,
-    justifyContent: 'center',
-    width: 76,
-  },
-  title: {
-    color: colors.text,
-    fontSize: 28,
-    fontWeight: '900',
-    letterSpacing: 0,
-    lineHeight: 34,
-    marginTop: 18,
-    textAlign: 'center',
-  },
-  subtitle: {
-    color: colors.muted,
-    fontSize: 15,
-    fontWeight: '700',
-    letterSpacing: 0,
-    lineHeight: 22,
-    marginTop: 8,
-    textAlign: 'center',
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
 });

@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-import { Redirect, useLocalSearchParams } from 'expo-router';
-
-export default function PestListRedirect() {
-  const params = useLocalSearchParams<{ crop?: string; stage?: string }>();
-
-  return (
-    <Redirect
-      href={{
-        pathname: '/AdvisoryListScreen',
-        params: {
-          crop: params.crop ?? 'cotton',
-          stage: params.stage ?? 'flowering',
-          category: 'pest',
-        },
-      }}
-    />
-  );
-}
-=======
 import { router, useLocalSearchParams } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import type { SymbolViewProps } from 'expo-symbols';
@@ -105,4 +85,3 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
 });
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330

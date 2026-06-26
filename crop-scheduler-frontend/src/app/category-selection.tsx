@@ -4,21 +4,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
-const colors = {
-  primary: '#0F4D2E',
-  secondary: '#3F7D57',
-  background: '#F7F6F2',
-  accent: '#D6A331',
-  card: '#FFFFFF',
-  text: '#1F2F27',
-  muted: '#6E766F',
-  line: '#E5E2DA',
-};
-=======
 import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -47,6 +34,7 @@ type Category = {
   icon: SymbolViewProps['name'];
   tint: string;
   accent: string;
+  route: '/pest-list' | '/disease-list' | '/nutrition-advisory';
 };
 
 const stageLabels: Record<string, string> = {
@@ -69,8 +57,9 @@ const categories: Category[] = [
     description: 'Identify insect pests, symptoms, damage and control measures.',
     features: ['Pest Identification', 'Symptoms', 'Damage', 'FPS Recommended Products'],
     icon: icons.pest,
-    tint: '#FFF3DA',
-    accent: '#B88316',
+    tint: '#FFF4E6',
+    accent: '#D97706',
+    route: '/pest-list',
   },
   {
     id: 'disease',
@@ -78,8 +67,9 @@ const categories: Category[] = [
     description: 'Identify crop diseases and learn prevention and treatment methods.',
     features: ['Disease Identification', 'Symptoms', 'Prevention', 'FPS Recommended Fungicides'],
     icon: icons.disease,
-    tint: '#F5E5ED',
-    accent: '#C85E84',
+    tint: '#FEEDEF',
+    accent: '#D82E4D',
+    route: '/disease-list',
   },
   {
     id: 'nutrition',
@@ -87,14 +77,9 @@ const categories: Category[] = [
     description: 'Stage-wise nutrition recommendations for better crop growth and yield.',
     features: ['Nutrient Requirements', 'Deficiency Symptoms', 'Dosage', 'FPS Nutrition Products'],
     icon: icons.nutrition,
-<<<<<<< HEAD
-    tint: '#DDEFE5',
-    accent: '#0F4D2E',
-=======
     tint: colors.mint,
     accent: colors.primary,
     route: '/nutrition-advisory',
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
 ];
 
@@ -145,8 +130,8 @@ function CategoryCard({
       style={({ pressed }) => [styles.categoryCard, pressed && styles.cardPressed]}
       onPress={() =>
         router.push({
-          pathname: '/AdvisoryListScreen',
-          params: { crop, stage, category: category.id },
+          pathname: category.route,
+          params: { crop, stage },
         })
       }>
       <CategoryIllustration category={category} />
@@ -240,11 +225,7 @@ export default function CategorySelectionScreen() {
                 router.push('/');
               }
             }}>
-<<<<<<< HEAD
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
-=======
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -254,11 +235,7 @@ export default function CategorySelectionScreen() {
 }
 
 const shadow = {
-<<<<<<< HEAD
-  shadowColor: '#0F2E1C',
-=======
   shadowColor: colors.shadow,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -272,19 +249,14 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 0,
+    paddingTop: 12,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
-    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
-    marginHorizontal: -20,
     marginBottom: 18,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -302,158 +274,20 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: '#FFFFFF',
+    color: colors.text,
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: '#DDEFE5',
+    color: colors.muted,
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
     lineHeight: 21,
     marginTop: 5,
   },
-<<<<<<< HEAD
-  summaryCard: {
-    backgroundColor: '#DDEFE5',
-    borderColor: '#E5E2DA',
-    borderRadius: 24,
-    borderWidth: 1,
-    flexDirection: 'row',
-    minHeight: 166,
-    overflow: 'hidden',
-    padding: 18,
-    ...shadow,
-  },
-  summaryCopy: {
-    flex: 1,
-    justifyContent: 'center',
-    zIndex: 2,
-  },
-  cropName: {
-    color: colors.primary,
-    fontSize: 18,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  stageLabel: {
-    color: colors.muted,
-    fontSize: 13,
-    fontWeight: '800',
-    letterSpacing: 0,
-    marginTop: 12,
-    textTransform: 'uppercase',
-  },
-  stagePill: {
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: colors.card,
-    borderRadius: 15,
-    flexDirection: 'row',
-    gap: 7,
-    marginTop: 7,
-    minHeight: 36,
-    paddingHorizontal: 12,
-  },
-  stagePillText: {
-    color: colors.text,
-    fontSize: 14,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  summaryArt: {
-    bottom: 0,
-    height: 150,
-    pointerEvents: 'none',
-    position: 'absolute',
-    right: 0,
-    width: 175,
-  },
-  summarySun: {
-    backgroundColor: '#FFD76A',
-    borderRadius: 19,
-    height: 38,
-    position: 'absolute',
-    right: 20,
-    top: 12,
-    width: 38,
-  },
-  summaryField: {
-    backgroundColor: '#D4E8C6',
-    borderTopLeftRadius: 74,
-    bottom: -10,
-    height: 92,
-    overflow: 'hidden',
-    position: 'absolute',
-    right: -12,
-    width: 190,
-  },
-  summaryPlant: {
-    bottom: 15,
-    height: 58,
-    position: 'absolute',
-    width: 22,
-  },
-  summaryStem: {
-    backgroundColor: colors.primary,
-    borderRadius: 3,
-    bottom: 0,
-    height: 37,
-    left: 9,
-    position: 'absolute',
-    width: 5,
-  },
-  summaryLeafLeft: {
-    backgroundColor: colors.primary,
-    borderBottomLeftRadius: 12,
-    borderTopRightRadius: 12,
-    bottom: 20,
-    height: 17,
-    position: 'absolute',
-    right: 11,
-    transform: [{ rotate: '-28deg' }],
-    width: 11,
-  },
-  summaryLeafRight: {
-    backgroundColor: colors.secondary,
-    borderBottomRightRadius: 12,
-    borderTopLeftRadius: 12,
-    bottom: 13,
-    height: 17,
-    left: 11,
-    position: 'absolute',
-    transform: [{ rotate: '28deg' }],
-    width: 11,
-  },
-  cottonBud: {
-    backgroundColor: colors.card,
-    borderColor: '#DDE8DD',
-    borderRadius: 11,
-    borderWidth: 1,
-    height: 22,
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    width: 22,
-  },
-  chilliFruit: {
-    backgroundColor: '#E53935',
-    borderBottomLeftRadius: 11,
-    borderBottomRightRadius: 11,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    height: 29,
-    left: 6,
-    position: 'absolute',
-    top: 1,
-    transform: [{ rotate: '12deg' }],
-    width: 11,
-  },
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   question: {
     color: colors.text,
     fontSize: 22,
@@ -565,11 +399,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-<<<<<<< HEAD
-    backgroundColor: '#DDEFE5',
-=======
     backgroundColor: colors.mint,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -618,11 +448,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-<<<<<<< HEAD
-    borderColor: '#E5E2DA',
-=======
     borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -646,11 +472,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-<<<<<<< HEAD
-    color: '#7A8079',
-=======
     color: colors.inactive,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,
