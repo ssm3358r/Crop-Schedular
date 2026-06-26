@@ -1,0 +1,215 @@
+{
+  "crop": "cotton",
+  "category": "nutrition",
+  "nutritionStages": [
+    {
+      "id": "seedling-establishment",
+      "name": "Seedling & Establishment Stage",
+      "das": "0-30",
+      "whatHappens": "Foundation stage of the cotton crop. Strong root development and healthy seedlings are essential for achieving higher yields.",
+      "nutrientRequirements": [
+        {
+          "name": "Nitrogen (N)",
+          "purpose": "Supports early vegetative growth"
+        },
+        {
+          "name": "Phosphorus (P)",
+          "purpose": "Critical for root establishment"
+        },
+        {
+          "name": "Zinc (Zn)",
+          "purpose": "Supports enzyme activity and seedling vigor"
+        }
+      ],
+      "importance": [
+        "Promotes healthy root growth",
+        "Improves nutrient uptake",
+        "Improves water uptake",
+        "Improves plant stand and survival"
+      ],
+      "deficiencySymptoms": {
+        "nitrogen": [
+          "Light green leaves",
+          "Yellow leaves",
+          "Slow growth",
+          "Weak seedlings"
+        ],
+        "phosphorus": [
+          "Purplish leaf discoloration",
+          "Poor root development"
+        ],
+        "zinc": [
+          "Small leaves",
+          "Yellow bands between veins",
+          "Reduced vigor"
+        ]
+      },
+      "management": [
+        "Apply recommended basal NPK dose based on soil test",
+        "Treat seeds with biofertilizers",
+        "Apply Zinc Sulphate when deficiency appears",
+        "Maintain proper soil moisture"
+      ]
+    },
+
+    {
+      "id": "vegetative",
+      "name": "Vegetative Growth Stage",
+      "das": "30-60",
+      "whatHappens": "Rapid growth of leaves, stems and branches. Development of photosynthetic capacity for future boll formation.",
+      "nutrientRequirements": [
+        {
+          "name": "Nitrogen (N)",
+          "purpose": "Leaf and stem development"
+        },
+        {
+          "name": "Potassium (K)",
+          "purpose": "Plant strength and metabolism"
+        },
+        {
+          "name": "Magnesium (Mg)",
+          "purpose": "Photosynthesis"
+        }
+      ],
+      "importance": [
+        "Increases leaf area",
+        "Increases biomass",
+        "Improves photosynthesis",
+        "Supports branch development"
+      ],
+      "deficiencySymptoms": {
+        "nitrogen": [
+          "Older leaves turn yellow",
+          "Reduced plant height"
+        ],
+        "potassium": [
+          "Yellow leaf margins",
+          "Scorching at leaf edges",
+          "Weak stems"
+        ],
+        "magnesium": [
+          "Interveinal chlorosis in older leaves"
+        ]
+      },
+      "management": [
+        "Apply split doses of Nitrogen",
+        "Spray 19:19:19 @ 1%",
+        "Maintain adequate irrigation"
+      ]
+    },
+
+    {
+      "id": "flowering",
+      "name": "Flowering Stage",
+      "das": "60-90",
+      "whatHappens": "Flower buds develop and flowering begins. This stage determines the total number of bolls the crop can produce.",
+      "nutrientRequirements": [
+        {
+          "name": "Phosphorus (P)",
+          "purpose": "Supports flower initiation"
+        },
+        {
+          "name": "Potassium (K)",
+          "purpose": "Improves flower viability"
+        },
+        {
+          "name": "Boron (B)",
+          "purpose": "Reduces flower shedding and improves pollination"
+        }
+      ],
+      "importance": [
+        "Supports flower initiation",
+        "Improves pollination",
+        "Improves boll retention",
+        "Increases yield potential"
+      ],
+      "deficiencySymptoms": {
+        "boron": [
+          "Flower drop",
+          "Poor boll setting"
+        ],
+        "potassium": [
+          "Weak flowering",
+          "Reduced boll retention"
+        ]
+      },
+      "management": [
+        "Spray MKP (00:52:34) @ 1%",
+        "Spray Boron @ 0.2%",
+        "Maintain balanced nutrition",
+        "Maintain adequate moisture"
+      ]
+    },
+
+    {
+      "id": "boll-development",
+      "name": "Boll Development Stage",
+      "das": "90-130",
+      "whatHappens": "Cotton bolls develop and fill with fibers. Large quantities of nutrients are required during this period.",
+      "nutrientRequirements": [
+        {
+          "name": "Potassium (K)",
+          "purpose": "Improves boll size and weight"
+        },
+        {
+          "name": "Calcium (Ca)",
+          "purpose": "Supports fiber quality"
+        },
+        {
+          "name": "Magnesium (Mg)",
+          "purpose": "Maintains photosynthesis"
+        }
+      ],
+      "importance": [
+        "Improves boll size",
+        "Improves boll weight",
+        "Enhances lint quality",
+        "Prevents boll shedding"
+      ],
+      "management": [
+        "Ensure continuous nutrient supply",
+        "Avoid moisture stress",
+        "Maintain potassium availability",
+        "Monitor calcium and magnesium status"
+      ]
+    },
+
+    {
+      "id": "boll-maturity",
+      "name": "Boll Maturity & Opening Stage",
+      "das": "130+",
+      "whatHappens": "Cotton fibers complete development and bolls open for harvest.",
+      "nutrientRequirements": [
+        {
+          "name": "Potassium (K)",
+          "purpose": "Improves fiber strength and boll opening"
+        },
+        {
+          "name": "Sulphur (S)",
+          "purpose": "Improves lint quality"
+        }
+      ],
+      "importance": [
+        "Improves fiber strength",
+        "Promotes uniform boll opening",
+        "Enhances lint quality"
+      ],
+      "deficiencySymptoms": {
+        "potassium": [
+          "Delayed boll opening",
+          "Poor fiber quality"
+        ],
+        "sulphur": [
+          "Yellowing of young leaves",
+          "Reduced lint quality"
+        ]
+      },
+      "management": [
+        "Avoid excess Nitrogen application",
+        "Apply Potassium-rich fertilizers if needed",
+        "Maintain timely irrigation",
+        "Prevent moisture stress"
+      ]
+    }
+  ]
+}

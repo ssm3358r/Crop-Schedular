@@ -12,3 +12,20 @@ Starting Metro Bundler
 spawn EPERM
 Waiting on http://localhost:8082
 Logs for your project will appear below.
+Android Bundling failed 3316ms node_modules\expo-router\entry.js (1722 modules)
+Unable to resolve "@/assets/images/crops/chilli.png" from "src\app\select-crop.tsx"
+[0m [90m 150 |[39m             crop[33m.[39mid [33m===[39m [32m'cotton'[39m
+ [90m 151 |[39m               [33m?[39m require([32m'@/assets/images/crops/cotton.png'[39m)
+[31m[1m>[22m[39m[90m 152 |[39m               [33m:[39m require([32m'@/assets/images/crops/chilli.png'[39m)
+ [90m     |[39m                          [31m[1m^[22m[39m
+ [90m 153 |[39m           }
+ [90m 154 |[39m           style[33m=[39m{styles[33m.[39mcropPhoto}
+ [90m 155 |[39m           contentFit[33m=[39m[32m"cover"[39m[0m
+
+Import stack:
+
+ src\app\select-crop.tsx
+ | import "@/assets/images/crops/chilli.png"
+
+ src\app (require.context)
+

@@ -1,0 +1,303 @@
+{
+  "crop": "cotton",
+  "displayName": "Cotton",
+  "growingConditions": {
+    "temperature": "15-35°C",
+    "sunlight": "Full Sun",
+    "rainfall": "550-1000 mm/year",
+    "humidity": "50-70%",
+    "waterRequirement": "High Demand"
+  },
+  "stages": [
+    {
+      "id": "seedling-establishment",
+      "name": "Seedling & Establishment Stage",
+      "das": "0-30"
+    },
+    {
+      "id": "vegetative",
+      "name": "Vegetative Growth Stage",
+      "das": "30-60"
+    },
+    {
+      "id": "flowering",
+      "name": "Flowering Stage",
+      "das": "60-90"
+    },
+    {
+      "id": "boll-development",
+      "name": "Boll Development Stage",
+      "das": "90-130"
+    },
+    {
+      "id": "boll-maturity",
+      "name": "Boll Maturity & Opening Stage",
+      "das": "130+"
+    }
+  ],
+  "pests": [
+    {
+      "id": "pink-bollworm",
+      "name": "Pink Bollworm",
+      "scientificName": "Pectinophora gossypiella",
+      "stage": [
+        "flowering",
+        "boll-development",
+        "boll-maturity"
+      ],
+      "imageKey": "pink-bollworm",
+      "whatIsIt": "Pink Bollworm is a destructive cotton pest whose larvae feed inside developing bolls and seeds.",
+      "whenOccurs": [
+        "Flowering stage",
+        "Boll formation stage",
+        "60-150 DAS",
+        "Warm and dry climate"
+      ],
+      "symptoms": [
+        "Small bore holes on flower buds",
+        "Rosette flowers",
+        "Premature shedding of flowers and bolls",
+        "Larvae feeding inside bolls",
+        "Discolored lint",
+        "Damaged seeds",
+        "Double seeds",
+        "Webbed seed chambers"
+      ],
+      "damage": [
+        "Feeds inside cotton bolls",
+        "Reduces seed quality",
+        "Poor lint quality",
+        "Shorter fiber length",
+        "Premature boll opening",
+        "Yield reduction",
+        "Economic loss"
+      ],
+      "solution": {
+        "cultural": [
+          "Early sowing",
+          "Destroy infested bolls",
+          "Destroy crop residues",
+          "Crop rotation",
+          "Maintain field sanitation"
+        ],
+        "monitoring": [
+          "Install pheromone traps (5 traps/ha)",
+          "Inspect flowers and bolls regularly"
+        ],
+        "chemical": [
+          "Emamectin Benzoate 5 SG @ 220 g/ha"
+        ]
+      },
+      "recommendedProducts": [
+        {
+          "name": "Jawa",
+          "activeIngredient": "Emamectin Benzoate 5% SG"
+        }
+      ]
+    },
+
+    {
+      "id": "whitefly",
+      "name": "Whitefly",
+      "scientificName": "Bemisia tabaci",
+      "stage": [
+        "vegetative",
+        "flowering",
+        "boll-development"
+      ],
+      "imageKey": "whitefly-cotton",
+      "whatIsIt": "Whitefly is a sap-sucking insect pest attacking cotton leaves.",
+      "whenOccurs": [
+        "Warm weather",
+        "Humid weather",
+        "Vegetative stage onwards",
+        "Flowering stage",
+        "Boll development stage"
+      ],
+      "symptoms": [
+        "Yellow spots on leaves",
+        "Leaf curling",
+        "Leaf yellowing",
+        "Honeydew secretion",
+        "Black sooty mold",
+        "Poor boll opening"
+      ],
+      "damage": [
+        "Weakens plant growth",
+        "Reduces photosynthesis",
+        "Causes premature leaf fall",
+        "Reduces boll development",
+        "Reduces lint quality",
+        "Transmits viral diseases"
+      ],
+      "solution": {
+        "cultural": [
+          "Avoid excessive nitrogen",
+          "Field sanitation"
+        ],
+        "monitoring": [
+          "Inspect leaf undersides",
+          "Use yellow sticky traps"
+        ],
+        "chemical": [
+          "Imidacloprid 17.8 SL @ 200 ml/ha",
+          "Thiamethoxam 25 WG @ 100 g/ha"
+        ]
+      }
+    },
+
+    {
+      "id": "american-bollworm",
+      "name": "American Bollworm",
+      "stage": [
+        "flowering",
+        "boll-development"
+      ],
+      "imageKey": "american-bollworm",
+      "whatIsIt": "A major chewing pest of cotton attacking flower buds, flowers and bolls.",
+      "whenOccurs": [
+        "Flowering stage",
+        "Square formation stage",
+        "Boll development stage",
+        "Mid to late crop season"
+      ],
+      "symptoms": [
+        "Circular bore holes on bolls",
+        "Fecal pellets near holes",
+        "Premature shedding of flowers",
+        "Premature shedding of squares",
+        "Damaged young bolls"
+      ],
+      "damage": [
+        "Damages flowers",
+        "Damages squares",
+        "Damages bolls",
+        "Reduces lint quality",
+        "Severe yield loss"
+      ],
+      "solution": {
+        "cultural": [
+          "Intercrop with marigold",
+          "Destroy infested bolls",
+          "Deep summer ploughing"
+        ],
+        "biological": [
+          "Apply NPV @ 250 LE/ha",
+          "Conserve Trichogramma",
+          "Conserve ladybird beetles"
+        ],
+        "monitoring": [
+          "Install pheromone traps",
+          "Regular scouting"
+        ],
+        "chemical": [
+          "Indoxacarb 14.5 SC @ 500 ml/ha"
+        ]
+      }
+    },
+
+    {
+      "id": "aphids",
+      "name": "Aphids",
+      "scientificName": "Aphis gossypii",
+      "stage": [
+        "seedling-establishment",
+        "vegetative"
+      ],
+      "imageKey": "aphids",
+      "whatIsIt": "Small sap-sucking insects attacking leaves, shoots and tender plant parts.",
+      "whenOccurs": [
+        "Early vegetative stage",
+        "Warm conditions",
+        "Moderately humid conditions",
+        "Excess nitrogen application"
+      ],
+      "symptoms": [
+        "Colonies under leaves",
+        "Leaf curling",
+        "Leaf crinkling",
+        "Leaf distortion",
+        "Yellowing",
+        "Honeydew secretion",
+        "Black sooty mold"
+      ],
+      "damage": [
+        "Weakens plants",
+        "Reduces photosynthesis",
+        "Stunted growth",
+        "Delayed development",
+        "Reduced boll formation",
+        "Virus transmission"
+      ],
+      "solution": {
+        "cultural": [
+          "Avoid excessive nitrogen",
+          "Maintain sanitation",
+          "Remove infested shoots"
+        ],
+        "monitoring": [
+          "Inspect leaf undersides",
+          "Monitor growing points"
+        ],
+        "biological": [
+          "Conserve ladybird beetles",
+          "Conserve lacewings"
+        ],
+        "chemical": [
+          "Imidacloprid 17.8 SL @ 200 ml/ha",
+          "Thiamethoxam 25 WG @ 100 g/ha"
+        ]
+      }
+    },
+
+    {
+      "id": "jassids",
+      "name": "Jassids",
+      "stage": [
+        "vegetative",
+        "flowering"
+      ],
+      "imageKey": "jassids",
+      "whatIsIt": "Sap-sucking cotton leafhopper pest feeding on leaf undersides.",
+      "whenOccurs": [
+        "Vegetative stage",
+        "Early flowering stage",
+        "Warm weather",
+        "Humid weather"
+      ],
+      "symptoms": [
+        "Pale yellow leaves",
+        "Downward curling leaf margins",
+        "Red leaf edges",
+        "Hopper burn",
+        "Dry brittle leaves",
+        "Leaf cracking"
+      ],
+      "damage": [
+        "Reduced photosynthesis",
+        "Weak plants",
+        "Delayed boll development",
+        "Reduced cotton yield"
+      ],
+      "solution": {
+        "cultural": [
+          "Balanced fertilization",
+          "Avoid excess nitrogen",
+          "Remove host weeds"
+        ],
+        "monitoring": [
+          "Inspect underside of leaves"
+        ],
+        "botanical": [
+          "NSKE 5%"
+        ],
+        "chemical": [
+          "Imidacloprid 17.8 SL @ 100 ml/ha",
+          "Dimethoate 30 EC @ 500 ml/ha",
+          "Phosphamidon 40 SL @ 600 ml/ha",
+          "Methyl Demeton 25 EC @ 500 ml/ha"
+        ]
+      }
+    }
+  ]
+}

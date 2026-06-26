@@ -1,0 +1,152 @@
+{
+  "crop": "chilli",
+  "category": "disease",
+  "diseases": [
+    {
+      "id": "anthracnose",
+      "name": "Anthracnose / Fruit Rot",
+      "stage": [
+        "flowering",
+        "fruit-setting",
+        "fruit-development"
+      ],
+      "imageKey": "anthracnose",
+      "whatIsIt": "Fungal disease caused by Colletotrichum species affecting chilli fruits.",
+      "whenOccurs": [
+        "Warm weather",
+        "Humid weather",
+        "Rainy season"
+      ],
+      "symptoms": [
+        "Water-soaked spots",
+        "Sunken lesions",
+        "Concentric rings",
+        "Fruit rot"
+      ],
+      "damage": [
+        "Fruit decay",
+        "Reduced quality",
+        "Yield loss"
+      ],
+      "solution": {
+        "cultural": [
+          "Disease-free seed",
+          "Crop rotation",
+          "Remove infected fruits"
+        ],
+        "chemical": [
+          "Mancozeb 75 WP @ 2.5 g/L",
+          "Carbendazim 50 WP @ 1 g/L",
+          "Azoxystrobin 23 SC @ 1 ml/L"
+        ]
+      }
+    },
+
+    {
+      "id": "damping-off",
+      "name": "Damping Off",
+      "stage": [
+        "nursery"
+      ],
+      "imageKey": "damping-off",
+      "whatIsIt": "Soil-borne fungal disease affecting seedlings.",
+      "whenOccurs": [
+        "High humidity",
+        "Excess moisture",
+        "Rainy season"
+      ],
+      "symptoms": [
+        "Seed rot",
+        "Water-soaked lesions",
+        "Seedling collapse",
+        "Poor germination"
+      ],
+      "damage": [
+        "Seedling death",
+        "Poor plant stand"
+      ],
+      "solution": {
+        "seedTreatment": [
+          "Carbendazim @ 2 g/kg seed",
+          "Trichoderma viride @ 4-10 g/kg seed"
+        ],
+        "chemical": [
+          "Metalaxyl + Mancozeb @ 2 g/L",
+          "Copper Oxychloride @ 2.5 g/L"
+        ]
+      }
+    },
+
+    {
+      "id": "leaf-curl-virus",
+      "name": "Leaf Curl Virus",
+      "stage": [
+        "vegetative",
+        "flowering",
+        "fruit-setting"
+      ],
+      "imageKey": "leaf-curl-virus-chilli",
+      "whatIsIt": "Viral disease transmitted by whiteflies.",
+      "whenOccurs": [
+        "Warm weather",
+        "High whitefly population"
+      ],
+      "symptoms": [
+        "Leaf curling",
+        "Small leaves",
+        "Bushy growth",
+        "Stunted plants"
+      ],
+      "damage": [
+        "Poor flowering",
+        "Poor fruit set",
+        "50-90% yield loss"
+      ],
+      "solution": {
+        "vectorManagement": [
+          "Control whiteflies",
+          "Yellow sticky traps"
+        ],
+        "chemical": [
+          "Imidacloprid 17.8 SL @ 0.3 ml/L",
+          "Thiamethoxam 25 WG @ 0.25 g/L",
+          "Acetamiprid 20 SP @ 0.2 g/L"
+        ]
+      }
+    },
+
+    {
+      "id": "powdery-mildew",
+      "name": "Powdery Mildew",
+      "stage": [
+        "flowering",
+        "fruiting"
+      ],
+      "imageKey": "powdery-mildew",
+      "whatIsIt": "Fungal disease caused by Leveillula taurica.",
+      "whenOccurs": [
+        "Warm days",
+        "Cool nights",
+        "High humidity"
+      ],
+      "symptoms": [
+        "White powdery growth",
+        "Yellow patches",
+        "Leaf drop",
+        "Weak plants"
+      ],
+      "damage": [
+        "Reduced photosynthesis",
+        "Reduced fruit production",
+        "Yield loss"
+      ],
+      "solution": {
+        "chemical": [
+          "Wettable Sulphur 80 WP @ 2-3 g/L",
+          "Hexaconazole 5 EC @ 1 ml/L",
+          "Propiconazole 25 EC @ 1 ml/L"
+        ]
+      }
+    }
+  ]
+}

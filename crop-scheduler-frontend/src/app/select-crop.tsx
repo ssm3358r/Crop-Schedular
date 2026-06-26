@@ -6,14 +6,14 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const colors = {
-  primary: '#2E7D32',
-  secondary: '#66BB6A',
-  background: '#F8FAF8',
-  accent: '#FFC107',
+  primary: '#0F4D2E',
+  secondary: '#3F7D57',
+  background: '#F7F6F2',
+  accent: '#D6A331',
   card: '#FFFFFF',
-  text: '#1E293B',
-  muted: '#64748B',
-  line: '#E2ECE2',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  line: '#E5E2DA',
 };
 
 const icons = {
@@ -41,14 +41,14 @@ const crops: Array<{
     id: 'cotton',
     title: 'Cotton',
     subtitle: 'Complete advisory for every growth stage',
-    tint: '#EAF7EA',
-    accent: '#2E7D32',
+    tint: '#DDEFE5',
+    accent: '#0F4D2E',
   },
   {
     id: 'chilli',
     title: 'Chilli',
     subtitle: 'Complete advisory for every growth stage',
-    tint: '#FFF0E8',
+    tint: '#FFF3DA',
     accent: '#E53935',
   },
 ];
@@ -229,7 +229,7 @@ export default function SelectCropScreen() {
                 router.push('/');
               }
             }}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7C8A80'} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -239,7 +239,7 @@ export default function SelectCropScreen() {
 }
 
 const shadow = {
-  shadowColor: '#1B5E20',
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -253,14 +253,19 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 12,
+    paddingTop: 0,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
+    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
+    marginHorizontal: -20,
     marginBottom: 18,
+    paddingHorizontal: 20,
+    paddingTop: 18,
+    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -278,14 +283,14 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: colors.text,
+    color: '#FFFFFF',
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: colors.muted,
+    color: '#DDEFE5',
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
@@ -375,7 +380,7 @@ const styles = StyleSheet.create({
     width: 13,
   },
   heroLeafLeft: {
-    backgroundColor: '#2E7D32',
+    backgroundColor: '#0F4D2E',
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
     height: 13,
@@ -386,7 +391,7 @@ const styles = StyleSheet.create({
     width: 9,
   },
   heroLeafRight: {
-    backgroundColor: '#66BB6A',
+    backgroundColor: '#3F7D57',
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
     height: 13,
@@ -484,7 +489,7 @@ const styles = StyleSheet.create({
     width: 120,
   },
   stemTall: {
-    backgroundColor: '#2E7D32',
+    backgroundColor: '#0F4D2E',
     borderRadius: 3,
     bottom: 16,
     height: 66,
@@ -492,7 +497,7 @@ const styles = StyleSheet.create({
     width: 6,
   },
   plantLeaf: {
-    backgroundColor: '#43A047',
+    backgroundColor: '#3F7D57',
     height: 30,
     position: 'absolute',
     width: 19,
@@ -597,7 +602,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     alignItems: 'center',
-    backgroundColor: '#F1F8F1',
+    backgroundColor: '#DDEFE5',
     borderRadius: 13,
     flexDirection: 'row',
     gap: 5,
@@ -612,7 +617,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: '#DDEFE5',
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -661,7 +666,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-    borderColor: '#DCEADC',
+    borderColor: '#E5E2DA',
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -685,7 +690,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-    color: '#7C8A80',
+    color: '#7A8079',
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

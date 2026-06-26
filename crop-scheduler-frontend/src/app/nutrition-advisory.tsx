@@ -5,12 +5,12 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const colors = {
-  primary: '#2E7D32',
-  background: '#F8FAF8',
+  primary: '#0F4D2E',
+  background: '#F7F6F2',
   card: '#FFFFFF',
-  text: '#1E293B',
-  muted: '#64748B',
-  line: '#E2ECE2',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  line: '#E5E2DA',
 };
 
 const icons = {
@@ -45,7 +45,7 @@ export default function NutritionAdvisoryScreen() {
 }
 
 const shadow = {
-  shadowColor: '#1B5E20',
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   },
   iconWrap: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: '#DDEFE5',
     borderRadius: 28,
     height: 76,
     justifyContent: 'center',
