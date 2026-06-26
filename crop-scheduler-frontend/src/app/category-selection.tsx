@@ -4,6 +4,7 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+<<<<<<< HEAD
 const colors = {
   primary: '#0F4D2E',
   secondary: '#3F7D57',
@@ -14,6 +15,10 @@ const colors = {
   muted: '#6E766F',
   line: '#E5E2DA',
 };
+=======
+import { colors } from '@/constants/colors';
+import { HeroCard } from '@/components/HeroCard';
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -82,8 +87,14 @@ const categories: Category[] = [
     description: 'Stage-wise nutrition recommendations for better crop growth and yield.',
     features: ['Nutrient Requirements', 'Deficiency Symptoms', 'Dosage', 'FPS Nutrition Products'],
     icon: icons.nutrition,
+<<<<<<< HEAD
     tint: '#DDEFE5',
     accent: '#0F4D2E',
+=======
+    tint: colors.mint,
+    accent: colors.primary,
+    route: '/nutrition-advisory',
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
 ];
 
@@ -105,26 +116,6 @@ function AppIcon({
   color?: string;
 }) {
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
-}
-
-function CropSummaryArt({ crop }: { crop: CropId }) {
-  const isCotton = crop === 'cotton';
-
-  return (
-    <View style={styles.summaryArt}>
-      <View style={styles.summarySun} />
-      <View style={styles.summaryField}>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <View key={index} style={[styles.summaryPlant, { left: 14 + index * 23 }]}>
-            <View style={styles.summaryStem} />
-            <View style={styles.summaryLeafLeft} />
-            <View style={styles.summaryLeafRight} />
-            {isCotton ? <View style={styles.cottonBud} /> : <View style={styles.chilliFruit} />}
-          </View>
-        ))}
-      </View>
-    </View>
-  );
 }
 
 function CategoryIllustration({ category }: { category: Category }) {
@@ -202,17 +193,21 @@ export default function CategorySelectionScreen() {
           </View>
         </View>
 
-        <View style={styles.summaryCard}>
-          <View style={styles.summaryCopy}>
-            <Text style={styles.cropName}>{cropName}</Text>
-            <Text style={styles.stageLabel}>Current Stage</Text>
-            <View style={styles.stagePill}>
-              <AppIcon name={icons.flower} size={16} color={colors.primary} />
-              <Text style={styles.stagePillText}>{stageName}</Text>
-            </View>
-          </View>
-          <CropSummaryArt crop={crop} />
-        </View>
+        <HeroCard
+          eyebrow="Crop Advisory"
+          title={stageName}
+          subtitle={`${cropName} · tailored guidance for this growth stage.`}
+          pills={[
+            {
+              label: cropName,
+              icon: <AppIcon name={icons.advisory} size={14} color="#FFFFFF" />,
+            },
+            {
+              label: stageName,
+              icon: <AppIcon name={icons.flower} size={14} color="#FFFFFF" />,
+            },
+          ]}
+        />
 
         <Text style={styles.question}>What would you like help with today?</Text>
 
@@ -245,7 +240,11 @@ export default function CategorySelectionScreen() {
                 router.push('/');
               }
             }}>
+<<<<<<< HEAD
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
+=======
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -255,7 +254,11 @@ export default function CategorySelectionScreen() {
 }
 
 const shadow = {
+<<<<<<< HEAD
   shadowColor: '#0F2E1C',
+=======
+  shadowColor: colors.shadow,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -313,6 +316,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 5,
   },
+<<<<<<< HEAD
   summaryCard: {
     backgroundColor: '#DDEFE5',
     borderColor: '#E5E2DA',
@@ -448,6 +452,8 @@ const styles = StyleSheet.create({
     transform: [{ rotate: '12deg' }],
     width: 11,
   },
+=======
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   question: {
     color: colors.text,
     fontSize: 22,
@@ -559,7 +565,11 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
+<<<<<<< HEAD
     backgroundColor: '#DDEFE5',
+=======
+    backgroundColor: colors.mint,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -608,7 +618,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
+<<<<<<< HEAD
     borderColor: '#E5E2DA',
+=======
+    borderColor: colors.line,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -632,7 +646,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
+<<<<<<< HEAD
     color: '#7A8079',
+=======
+    color: colors.inactive,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

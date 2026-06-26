@@ -1,9 +1,10 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { SymbolView } from 'expo-symbols';
 import type { SymbolViewProps } from 'expo-symbols';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+<<<<<<< HEAD
 const colors = {
   primary: '#0F4D2E',
   background: '#F7F6F2',
@@ -12,11 +13,28 @@ const colors = {
   muted: '#6E766F',
   line: '#E5E2DA',
 };
+=======
+import { HeroCard } from '@/components/HeroCard';
+import { colors } from '@/constants/colors';
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   back: { ios: 'chevron.left', android: 'arrow_back', web: 'arrow_back' },
   nutrition: { ios: 'drop.fill', android: 'water_drop', web: 'water_drop' },
 } satisfies Record<string, SymbolViewProps['name']>;
+
+const stageLabels: Record<string, string> = {
+  'early-growth': 'Early Growth',
+  vegetative: 'Vegetative Stage',
+  flowering: 'Flowering Stage',
+  'boll-development': 'Boll Development',
+  'boll-maturity': 'Boll Maturity',
+  nursery: 'Nursery Stage',
+  transplanting: 'Transplanting',
+  'fruit-setting': 'Fruit Setting',
+  'fruit-development': 'Fruit Development',
+  harvesting: 'Harvesting',
+};
 
 function AppIcon({ name, size = 24, color = colors.primary }: { name: SymbolViewProps['name']; size?: number; color?: string }) {
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
@@ -25,6 +43,8 @@ function AppIcon({ name, size = 24, color = colors.primary }: { name: SymbolView
 export default function NutritionAdvisoryScreen() {
   const params = useLocalSearchParams<{ crop?: string; stage?: string }>();
   const cropName = params.crop === 'chilli' ? 'Chilli' : 'Cotton';
+  const stageId = typeof params.stage === 'string' ? params.stage : 'flowering';
+  const stageName = stageLabels[stageId] ?? 'Current Stage';
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -32,20 +52,30 @@ export default function NutritionAdvisoryScreen() {
         <Pressable style={styles.backButton} onPress={() => router.back()}>
           <AppIcon name={icons.back} color={colors.text} />
         </Pressable>
-        <View style={styles.card}>
-          <View style={styles.iconWrap}>
-            <AppIcon name={icons.nutrition} size={38} />
-          </View>
-          <Text style={styles.title}>Nutrition Advisory</Text>
-          <Text style={styles.subtitle}>{cropName} nutrition recommendations for the selected stage will appear here.</Text>
-        </View>
+        <HeroCard
+          centered
+          eyebrow="Nutrition Advisory"
+          title="Nutrition Management"
+          subtitle={`${cropName} nutrition recommendations for the selected stage will appear here.`}
+          icon={<AppIcon name={icons.nutrition} size={34} color="#FFFFFF" />}
+          iconBackground="rgba(124,179,66,0.28)"
+          pills={[
+            { label: cropName },
+            { label: stageName },
+          ]}
+          style={styles.heroCard}
+        />
       </View>
     </SafeAreaView>
   );
 }
 
 const shadow = {
+<<<<<<< HEAD
   shadowColor: '#0F2E1C',
+=======
+  shadowColor: colors.shadow,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -66,13 +96,9 @@ const styles = StyleSheet.create({
     width: 48,
     ...shadow,
   },
-  card: {
-    alignItems: 'center',
-    backgroundColor: colors.card,
-    borderColor: colors.line,
-    borderRadius: 24,
-    borderWidth: 1,
+  heroCard: {
     marginTop: 24,
+<<<<<<< HEAD
     padding: 24,
     ...shadow,
   },
@@ -101,5 +127,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 8,
     textAlign: 'center',
+=======
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
 });

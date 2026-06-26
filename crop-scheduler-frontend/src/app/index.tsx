@@ -4,6 +4,7 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+<<<<<<< HEAD
 const colors = {
   primary: '#0F4D2E',
   secondary: '#3F7D57',
@@ -14,6 +15,10 @@ const colors = {
   card: '#FFFFFF',
   line: '#E5E2DA',
 };
+=======
+import { colors } from '@/constants/colors';
+import { HeroCard } from '@/components/HeroCard';
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -34,28 +39,44 @@ const features = [
     title: 'Crop Advisory',
     subtitle: 'Pest • Disease • Nutrition',
     description: 'Get stage-wise crop recommendations for Cotton and Chilli.',
+<<<<<<< HEAD
     color: '#DDEFE5',
     accent: '#0F4D2E',
+=======
+    color: colors.mint,
+    accent: colors.primary,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
   {
     icon: icons.learning,
     title: 'Learning Center',
     subtitle: 'Expert Farming Videos',
     description: 'Watch informative videos uploaded by FPS experts.',
+<<<<<<< HEAD
     color: '#FFF3DA',
     accent: '#B88316',
+=======
+    color: colors.peach,
+    accent: '#D99900',
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
   {
     icon: icons.product,
     title: 'Product Catalog',
     subtitle: 'FPS Products',
     description: 'Browse insecticides, fungicides and nutrition products.',
+<<<<<<< HEAD
     color: '#E1F0FA',
     accent: '#1685B5',
+=======
+    color: colors.sky,
+    accent: '#2D76B9',
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
 ];
 
 const advisories = [
+<<<<<<< HEAD
   { title: 'Pink Bollworm Alert', crop: 'Cotton', tint: '#F5E5ED', pest: '#C85E84' },
   { title: 'Whitefly Management', crop: 'Cotton', tint: '#DDEFE5', pest: '#F8FAFC' },
   { title: 'Thrips Control', crop: 'Chilli', tint: '#FFF3DA', pest: '#D96C2C' },
@@ -65,6 +86,17 @@ const videos = [
   { title: 'Cotton early stage pest scouting', duration: '05:24', color: '#DDEFE5' },
   { title: 'Chilli disease control practices', duration: '07:12', color: '#FFF3DA' },
   { title: 'Balanced nutrition for better yield', duration: '04:38', color: '#E1F0FA' },
+=======
+  { title: 'Pink Bollworm Alert', crop: 'Cotton', tint: '#FDE7F0', pest: '#E25286' },
+  { title: 'Whitefly Management', crop: 'Cotton', tint: colors.mint, pest: '#F8FAFC' },
+  { title: 'Thrips Control', crop: 'Chilli', tint: '#FFF1E8', pest: '#F97316' },
+];
+
+const videos = [
+  { title: 'Cotton early stage pest scouting', duration: '05:24', color: colors.mint },
+  { title: 'Chilli disease control practices', duration: '07:12', color: '#FFE7DC' },
+  { title: 'Balanced nutrition for better yield', duration: '04:38', color: colors.sky },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 ];
 
 const navItems = [
@@ -85,34 +117,6 @@ function AppIcon({
   color?: string;
 }) {
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
-}
-
-function FarmIllustration() {
-  return (
-    <View style={[styles.farmArt, styles.noPointer]}>
-      <View style={styles.sun} />
-      <View style={styles.cloudOne} />
-      <View style={styles.cloudTwo} />
-      <View style={styles.field}>
-        {Array.from({ length: 5 }).map((_, row) => (
-          <View key={row} style={[styles.cropRow, { bottom: 4 + row * 11 }]}>
-            {Array.from({ length: 7 }).map((__, item) => (
-              <View key={item} style={styles.cropPlant}>
-                <View style={styles.leafLeft} />
-                <View style={styles.leafRight} />
-                <View style={[styles.cropDot, item % 2 === 0 ? styles.cottonDot : styles.chilliDot]} />
-              </View>
-            ))}
-          </View>
-        ))}
-      </View>
-      <View style={styles.farmer}>
-        <View style={styles.hat} />
-        <View style={styles.face} />
-        <View style={styles.body} />
-      </View>
-    </View>
-  );
 }
 
 function FeatureIllustration({ accent }: { accent: string }) {
@@ -180,16 +184,16 @@ export default function HomeScreen() {
           <Text style={styles.subtitle}>Let&apos;s keep your crops healthy today.</Text>
         </View>
 
-        <View style={styles.banner}>
-          <View style={styles.bannerCopy}>
-            <Text style={styles.bannerTitle}>Expert Crop Advisory for Better Yield</Text>
-            <Pressable style={styles.primaryButton}>
-              <Text style={styles.primaryButtonText}>Start Advisory</Text>
-              <AppIcon name={icons.arrow} size={17} color="#FFFFFF" />
-            </Pressable>
-          </View>
-          <FarmIllustration />
-        </View>
+        <HeroCard
+          eyebrow="FPS Farmer Advisory"
+          title="Expert Crop Advisory for Better Yield"
+          subtitle="Stage-wise pest, disease and nutrition guidance for your field."
+          action={{
+            label: 'Start Advisory',
+            onPress: () => router.push('/select-crop'),
+            icon: <AppIcon name={icons.arrow} size={17} color={colors.primary} />,
+          }}
+        />
 
         <View style={styles.featureGrid}>
           {features.map((feature) => (
@@ -259,7 +263,11 @@ export default function HomeScreen() {
       <View style={styles.bottomNav}>
         {navItems.map((item) => (
           <Pressable key={item.label} style={[styles.navItem, item.active && styles.navItemActive]}>
+<<<<<<< HEAD
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
+=======
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -269,7 +277,11 @@ export default function HomeScreen() {
 }
 
 const shadow = {
+<<<<<<< HEAD
   shadowColor: '#0F2E1C',
+=======
+  shadowColor: colors.shadow,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 10 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -335,9 +347,14 @@ const styles = StyleSheet.create({
   welcome: { color: '#FFFFFF', fontSize: 30, fontWeight: '900', letterSpacing: 0, lineHeight: 37, marginTop: 4 },
   subtitle: { color: '#DDEFE5', fontSize: 15, fontWeight: '600', letterSpacing: 0, lineHeight: 22, marginTop: 4 },
   banner: {
+<<<<<<< HEAD
     backgroundColor: colors.card,
     borderColor: colors.line,
     borderRadius: 24,
+=======
+    borderColor: colors.line,
+    borderRadius: 20,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderWidth: 1,
     flexDirection: 'row',
     minHeight: 176,
@@ -357,6 +374,7 @@ const styles = StyleSheet.create({
     minHeight: 48,
     paddingHorizontal: 18,
   },
+<<<<<<< HEAD
   primaryButtonText: { color: '#FFFFFF', fontSize: 15, fontWeight: '800', letterSpacing: 0 },
   farmArt: { bottom: 0, height: 164, position: 'absolute', right: -3, width: 170 },
   noPointer: { pointerEvents: 'none' },
@@ -423,6 +441,18 @@ const styles = StyleSheet.create({
   face: { backgroundColor: '#C98555', borderRadius: 12, height: 22, marginTop: -2, width: 22 },
   body: { backgroundColor: colors.primary, borderTopLeftRadius: 14, borderTopRightRadius: 14, height: 32, marginTop: 1, width: 32 },
   featureGrid: { gap: 14, marginTop: 18 },
+=======
+  primaryButtonText: {
+    color: '#FFFFFF',
+    fontSize: 15,
+    fontWeight: '800',
+    letterSpacing: 0,
+  },
+  featureGrid: {
+    gap: 14,
+    marginTop: 18,
+  },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   featureCard: {
     backgroundColor: colors.card,
     borderColor: colors.line,
@@ -433,11 +463,48 @@ const styles = StyleSheet.create({
     padding: 18,
     ...shadow,
   },
+<<<<<<< HEAD
   featureTop: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
   featureIcon: { alignItems: 'center', borderRadius: 16, height: 48, justifyContent: 'center', width: 48 },
   arrowCircle: { alignItems: 'center', backgroundColor: '#DDEFE5', borderRadius: 15, height: 30, justifyContent: 'center', width: 30 },
   featureArt: { height: 54, position: 'absolute', right: 16, top: 62, width: 86 },
   artCircle: { borderRadius: 27, height: 54, position: 'absolute', right: 0, width: 54 },
+=======
+  featureTop: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  featureIcon: {
+    alignItems: 'center',
+    borderRadius: 16,
+    height: 48,
+    justifyContent: 'center',
+    width: 48,
+  },
+  arrowCircle: {
+    alignItems: 'center',
+    backgroundColor: colors.mint,
+    borderRadius: 15,
+    height: 30,
+    justifyContent: 'center',
+    width: 30,
+  },
+  featureArt: {
+    height: 54,
+    position: 'absolute',
+    right: 16,
+    top: 62,
+    width: 86,
+  },
+  artCircle: {
+    borderRadius: 27,
+    height: 54,
+    position: 'absolute',
+    right: 0,
+    width: 54,
+  },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   toolHandle: {
     backgroundColor: '#B68655',
     borderRadius: 4,
@@ -544,11 +611,43 @@ const styles = StyleSheet.create({
     marginTop: 12,
     minHeight: 40,
   },
+<<<<<<< HEAD
   advisoryFooter: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 },
   cropName: { color: colors.muted, fontSize: 13, fontWeight: '800', letterSpacing: 0 },
   viewButton: { backgroundColor: '#DDEFE5', borderRadius: 13, minHeight: 32, paddingHorizontal: 14, justifyContent: 'center' },
   viewButtonText: { color: colors.primary, fontSize: 13, fontWeight: '900', letterSpacing: 0 },
   videoList: { gap: 13, marginTop: 14 },
+=======
+  advisoryFooter: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10,
+  },
+  cropName: {
+    color: colors.muted,
+    fontSize: 13,
+    fontWeight: '800',
+    letterSpacing: 0,
+  },
+  viewButton: {
+    backgroundColor: colors.mint,
+    borderRadius: 13,
+    minHeight: 32,
+    paddingHorizontal: 14,
+    justifyContent: 'center',
+  },
+  viewButtonText: {
+    color: colors.primary,
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  videoList: {
+    gap: 13,
+    marginTop: 14,
+  },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   videoCard: {
     alignItems: 'center',
     backgroundColor: colors.card,
@@ -561,10 +660,42 @@ const styles = StyleSheet.create({
     padding: 12,
     ...shadow,
   },
+<<<<<<< HEAD
   videoThumb: { borderRadius: 20, height: 80, overflow: 'hidden', width: 104 },
   videoHillBack: { backgroundColor: '#BFD8AD', borderRadius: 46, bottom: -22, height: 62, left: -10, position: 'absolute', width: 94 },
   videoHillFront: { backgroundColor: colors.secondary, borderRadius: 45, bottom: -28, height: 72, position: 'absolute', right: -15, width: 104 },
   videoPlant: { bottom: 23, position: 'absolute', right: 28 },
+=======
+  videoThumb: {
+    borderRadius: 17,
+    height: 80,
+    overflow: 'hidden',
+    width: 104,
+  },
+  videoHillBack: {
+    backgroundColor: colors.badge,
+    borderRadius: 46,
+    bottom: -22,
+    height: 62,
+    left: -10,
+    position: 'absolute',
+    width: 94,
+  },
+  videoHillFront: {
+    backgroundColor: colors.secondary,
+    borderRadius: 45,
+    bottom: -28,
+    height: 72,
+    position: 'absolute',
+    right: -15,
+    width: 104,
+  },
+  videoPlant: {
+    bottom: 23,
+    position: 'absolute',
+    right: 28,
+  },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   videoLeafLeft: {
     backgroundColor: colors.primary,
     borderBottomLeftRadius: 14,
@@ -602,7 +733,11 @@ const styles = StyleSheet.create({
   durationPill: {
     alignItems: 'center',
     alignSelf: 'flex-start',
+<<<<<<< HEAD
     backgroundColor: '#DDEFE5',
+=======
+    backgroundColor: colors.mint,
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 12,
     flexDirection: 'row',
     gap: 5,
@@ -627,8 +762,31 @@ const styles = StyleSheet.create({
     width: '91%',
     ...shadow,
   },
+<<<<<<< HEAD
   navItem: { alignItems: 'center', borderRadius: 22, flex: 1, gap: 4, minHeight: 58, justifyContent: 'center' },
   navItemActive: { backgroundColor: colors.primary },
   navLabel: { color: '#7A8079', fontSize: 11, fontWeight: '800', letterSpacing: 0 },
   navLabelActive: { color: '#FFFFFF' },
+=======
+  navItem: {
+    alignItems: 'center',
+    borderRadius: 22,
+    flex: 1,
+    gap: 4,
+    minHeight: 58,
+    justifyContent: 'center',
+  },
+  navItemActive: {
+    backgroundColor: colors.primary,
+  },
+  navLabel: {
+    color: colors.inactive,
+    fontSize: 11,
+    fontWeight: '800',
+    letterSpacing: 0,
+  },
+  navLabelActive: {
+    color: '#FFFFFF',
+  },
+>>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 });
