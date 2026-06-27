@@ -5,7 +5,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
+import { HeroCard } from '@/components/HeroCard';
+
 const colors = {
   primary: '#0F4D2E',
   secondary: '#3F7D57',
@@ -16,10 +17,6 @@ const colors = {
   muted: '#6E766F',
   line: '#E5E2DA',
 };
-=======
-import { colors } from '@/constants/colors';
-import { HeroCard } from '@/components/HeroCard';
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -46,13 +43,8 @@ const crops: Array<{
     id: 'cotton',
     title: 'Cotton',
     subtitle: 'Complete advisory for every growth stage',
-<<<<<<< HEAD
     tint: '#DDEFE5',
     accent: '#0F4D2E',
-=======
-    tint: colors.mint,
-    accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   },
   {
     id: 'chilli',
@@ -178,11 +170,7 @@ export default function SelectCropScreen() {
                 router.push('/');
               }
             }}>
-<<<<<<< HEAD
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
-=======
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -192,18 +180,14 @@ export default function SelectCropScreen() {
 }
 
 const shadow = {
-<<<<<<< HEAD
   shadowColor: '#0F2E1C',
-=======
-  shadowColor: colors.shadow,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
   elevation: 5,
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, any> = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
@@ -254,7 +238,6 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 5,
   },
-<<<<<<< HEAD
   heroCard: {
     backgroundColor: colors.card,
     borderColor: '#DDEDDD',
@@ -403,141 +386,6 @@ const styles = StyleSheet.create({
     height: 34,
     width: 36,
   },
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
-  cropList: {
-    gap: 16,
-    marginTop: 20,
-  },
-  cropCard: {
-    backgroundColor: colors.card,
-    borderColor: colors.line,
-    borderRadius: 24,
-    borderWidth: 1,
-    minHeight: 216,
-    overflow: 'hidden',
-    padding: 16,
-    ...shadow,
-  },
-  cardPressed: {
-    opacity: 0.86,
-    transform: [{ scale: 0.99 }],
-  },
-  cropIllustrationWrap: {
-    alignItems: 'center',
-    borderRadius: 20,
-    height: 112,
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  cropPhoto: {
-    height: '100%',
-    width: '100%',
-  },
-  photoOverlay: {
-    backgroundColor: 'rgba(15, 82, 27, 0.08)',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-<<<<<<< HEAD
-  cropArt: {
-    alignItems: 'center',
-    height: 102,
-    justifyContent: 'flex-end',
-    width: 120,
-  },
-  stemTall: {
-    backgroundColor: '#0F4D2E',
-    borderRadius: 3,
-    bottom: 16,
-    height: 66,
-    position: 'absolute',
-    width: 6,
-  },
-  plantLeaf: {
-    backgroundColor: '#3F7D57',
-    height: 30,
-    position: 'absolute',
-    width: 19,
-  },
-  leafA: {
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    bottom: 55,
-    right: 44,
-    transform: [{ rotate: '-32deg' }],
-  },
-  leafB: {
-    borderBottomRightRadius: 20,
-    borderTopLeftRadius: 20,
-    bottom: 43,
-    left: 44,
-    transform: [{ rotate: '32deg' }],
-  },
-  leafC: {
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    bottom: 27,
-    right: 45,
-    transform: [{ rotate: '-25deg' }],
-  },
-  cottonBud: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#DDE8DD',
-    borderRadius: 15,
-    borderWidth: 1,
-    height: 30,
-    position: 'absolute',
-    width: 30,
-  },
-  cottonBudA: {
-    bottom: 68,
-    left: 42,
-  },
-  cottonBudB: {
-    bottom: 47,
-    right: 31,
-  },
-  cottonBudC: {
-    bottom: 27,
-    left: 31,
-  },
-  chilliFruit: {
-    backgroundColor: '#E53935',
-    borderBottomLeftRadius: 14,
-    borderBottomRightRadius: 14,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    height: 38,
-    position: 'absolute',
-    width: 14,
-  },
-  chilliA: {
-    bottom: 55,
-    left: 42,
-    transform: [{ rotate: '22deg' }],
-  },
-  chilliB: {
-    bottom: 38,
-    right: 38,
-    transform: [{ rotate: '-18deg' }],
-  },
-  chilliC: {
-    bottom: 24,
-    left: 50,
-    transform: [{ rotate: '8deg' }],
-  },
-  soil: {
-    backgroundColor: '#C99A60',
-    borderRadius: 20,
-    height: 15,
-    width: 82,
-  },
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   cropCopy: {
     marginTop: 15,
     paddingRight: 44,
@@ -565,11 +413,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     alignItems: 'center',
-<<<<<<< HEAD
     backgroundColor: '#DDEFE5',
-=======
-    backgroundColor: colors.mint,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 13,
     flexDirection: 'row',
     gap: 5,
@@ -584,11 +428,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-<<<<<<< HEAD
     backgroundColor: '#DDEFE5',
-=======
-    backgroundColor: colors.mint,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -637,11 +477,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-<<<<<<< HEAD
     borderColor: '#E5E2DA',
-=======
-    borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -665,11 +501,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-<<<<<<< HEAD
     color: '#7A8079',
-=======
-    color: colors.inactive,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

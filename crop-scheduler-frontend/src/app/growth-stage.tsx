@@ -4,7 +4,8 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-<<<<<<< HEAD
+import { HeroCard } from '@/components/HeroCard';
+
 const colors = {
   primary: '#0F4D2E',
   secondary: '#3F7D57',
@@ -15,10 +16,6 @@ const colors = {
   muted: '#6E766F',
   line: '#E5E2DA',
 };
-=======
-import { colors } from '@/constants/colors';
-import { HeroCard } from '@/components/HeroCard';
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -55,26 +52,16 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Early Growth',
       description: 'Healthy seed germination and establishment.',
       icon: icons.nursery,
-<<<<<<< HEAD
       tint: '#DDEFE5',
       accent: '#0F4D2E',
-=======
-      tint: colors.mint,
-      accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Rapid leaf and stem development.',
       icon: icons.stage,
-<<<<<<< HEAD
       tint: '#DDEFE5',
       accent: '#3F7D57',
-=======
-      tint: colors.mint,
-      accent: colors.secondary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'flowering',
@@ -89,13 +76,8 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Boll Development',
       description: 'Bolls start developing.',
       icon: icons.cotton,
-<<<<<<< HEAD
       tint: '#F7F6F2',
       accent: '#6E766F',
-=======
-      tint: '#F1F5F9',
-      accent: colors.muted,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'boll-maturity',
@@ -112,39 +94,24 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Nursery Stage',
       description: 'Strong seedlings begin with careful nursery care.',
       icon: icons.nursery,
-<<<<<<< HEAD
       tint: '#DDEFE5',
       accent: '#0F4D2E',
-=======
-      tint: colors.mint,
-      accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'transplanting',
       name: 'Transplanting',
       description: 'Seedlings move to the main field for establishment.',
       icon: icons.transplant,
-<<<<<<< HEAD
       tint: '#DDEFE5',
       accent: '#3F7D57',
-=======
-      tint: colors.mint,
-      accent: colors.secondary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Leaf, branch and canopy growth accelerates.',
       icon: icons.stage,
-<<<<<<< HEAD
       tint: '#DDEFE5',
       accent: '#0F4D2E',
-=======
-      tint: colors.mint,
-      accent: colors.primary,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     },
     {
       id: 'flowering',
@@ -300,11 +267,7 @@ export default function GrowthStageScreen() {
                 router.push('/');
               }
             }}>
-<<<<<<< HEAD
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
-=======
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -314,18 +277,14 @@ export default function GrowthStageScreen() {
 }
 
 const shadow = {
-<<<<<<< HEAD
   shadowColor: '#0F2E1C',
-=======
-  shadowColor: colors.shadow,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
   elevation: 5,
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, any> = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
@@ -376,7 +335,6 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 5,
   },
-<<<<<<< HEAD
   headerCard: {
     backgroundColor: colors.card,
     borderColor: colors.line,
@@ -524,45 +482,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0,
   },
-=======
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
-  sectionHeader: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 24,
-    marginBottom: 14,
-  },
-  sectionTitle: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  stageCount: {
-    color: colors.primary,
-    fontSize: 13,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  timeline: {
-    gap: 0,
-  },
-  timelineItem: {
-    flexDirection: 'row',
-    minHeight: 128,
-  },
-  timelineRail: {
-    alignItems: 'center',
-    width: 24,
-  },
   timelineDot: {
     backgroundColor: colors.primary,
-<<<<<<< HEAD
-    borderColor: '#DDEFE5',
-=======
-    borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
+    borderColor: '#EFECE4',
     borderRadius: 9,
     borderWidth: 4,
     height: 18,
@@ -571,11 +493,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   timelineLine: {
-<<<<<<< HEAD
     backgroundColor: '#D8D5CC',
-=======
-    backgroundColor: colors.badge,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     flex: 1,
     marginTop: -1,
     width: 2,
@@ -640,11 +558,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-<<<<<<< HEAD
     backgroundColor: '#DDEFE5',
-=======
-    backgroundColor: colors.mint,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 17,
     height: 34,
     justifyContent: 'center',
@@ -654,11 +568,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-<<<<<<< HEAD
     borderColor: '#E5E2DA',
-=======
-    borderColor: colors.line,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -682,11 +592,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-<<<<<<< HEAD
     color: '#7A8079',
-=======
-    color: colors.inactive,
->>>>>>> 6a7e00deada5760397190316f5abba3e10e73330
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,
