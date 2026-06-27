@@ -1,0 +1,9 @@
+Django==6.0.6
+django-cors-headers==4.7.0
+djangorestframework==3.17.1
+djangorestframework-simplejwt==5.5.1
+psycopg2-binary==2.9.12
+cloudinary==1.44.1
+django-cloudinary-storage==0.3.0
+gunicorn==26.0.0
+python-dotenv==1.1.0
