@@ -6,7 +6,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
-import WelcomeScreen from './welcome';
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -127,8 +126,6 @@ function VideoThumb({ color }: { color: string }) {
 }
 
 export default function HomeScreen() {
-  return <WelcomeScreen />;
-
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView
