@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
-import { Image } from 'expo-image';
 import { SymbolView } from 'expo-symbols';
 import type { SymbolViewProps } from 'expo-symbols';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { CropCard } from '@/components/advisory/CropCard';
 import { HeroCard } from '@/components/HeroCard';
 
 const colors = {
@@ -36,6 +36,7 @@ const crops: Array<{
   id: CropId;
   title: string;
   subtitle: string;
+  image: ImageSourcePropType;
   tint: string;
   accent: string;
 }> = [
@@ -43,16 +44,18 @@ const crops: Array<{
     id: 'cotton',
     title: 'Cotton',
     subtitle: 'Complete advisory for every growth stage',
+    image: require('@/assets/images/crops/CottonCrop.png'),
     tint: '#DDEFE5',
     accent: '#0F4D2E',
   },
-  {
-    id: 'chilli',
-    title: 'Chilli',
-    subtitle: 'Complete advisory for every growth stage',
-    tint: '#FFF3DA',
-    accent: '#E53935',
-  },
+ {
+  id: 'chilli',
+  title: 'Chilli',
+  subtitle: 'Complete advisory for every growth stage',
+  image: require('@/assets/images/crops/chilli.png'),
+  tint: '#FFF3DA',
+  accent: '#E53935',
+},
 ];
 
 const chips = ['Pest Management', 'Disease Management', 'Nutrition Guide'];
@@ -77,50 +80,6 @@ function AppIcon({
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
 }
 
-function CropCard({ crop }: { crop: (typeof crops)[number] }) {
-  return (
-    <Pressable
-      style={({ pressed }) => [styles.cropCard, pressed && styles.cardPressed]}
-      onPress={() =>
-        router.push({
-          pathname: '/growth-stage',
-          params: { crop: crop.id },
-        })
-      }>
-      <View style={[styles.cropIllustrationWrap, { backgroundColor: crop.tint }]}>
-        <Image
-          source={
-            crop.id === 'cotton'
-              ? require('@/assets/images/crops/cotton.png')
-              : require('@/assets/images/crops/chilli.png')
-          }
-          style={styles.cropPhoto}
-          contentFit="cover"
-          transition={180}
-        />
-        <View style={styles.photoOverlay} />
-      </View>
-
-      <View style={styles.cropCopy}>
-        <Text style={styles.cropTitle}>{crop.title}</Text>
-        <Text style={styles.cropSubtitle}>{crop.subtitle}</Text>
-        <View style={styles.chipWrap}>
-          {chips.map((chip) => (
-            <View key={chip} style={styles.chip}>
-              <AppIcon name={icons.check} size={12} color={colors.primary} />
-              <Text style={styles.chipText}>{chip}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
-
-      <View style={styles.arrowCircle}>
-        <AppIcon name={icons.arrow} size={18} color={colors.primary} />
-      </View>
-    </Pressable>
-  );
-}
-
 export default function SelectCropScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -143,7 +102,17 @@ export default function SelectCropScreen() {
 
         <View style={styles.cropList}>
           {crops.map((crop) => (
-            <CropCard key={crop.id} crop={crop} />
+            <CropCard
+              key={crop.id}
+              title={crop.title}
+              image={crop.image}
+              onPress={() =>
+                router.push({
+                  pathname: '/growth-stage',
+                  params: { crop: crop.id },
+                })
+              }
+            />
           ))}
         </View>
 
