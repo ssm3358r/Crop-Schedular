@@ -32,14 +32,14 @@ const icons = {
 
 type CropId = 'cotton' | 'chilli';
 
-const crops: Array<{
+const crops: {
   id: CropId;
   title: string;
   subtitle: string;
   image: ImageSourcePropType;
   tint: string;
   accent: string;
-}> = [
+}[] = [
   {
     id: 'cotton',
     title: 'Cotton',
@@ -52,8 +52,12 @@ const crops: Array<{
     id: 'chilli',
     title: 'Chilli',
     subtitle: 'Complete advisory for every growth stage',
+<<<<<<< HEAD
     image: require('@/assets/images/crops/chilli.png'),
     tint: '#FFF3DA',
+=======
+    tint: '#FFF0E8',
+>>>>>>> a1db6492da7ee5ec98389ff8ca0a078475561a92
     accent: '#E53935',
   },
 ];
@@ -163,19 +167,14 @@ const styles: Record<string, any> = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 0,
+    paddingTop: 12,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
-    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
-    marginHorizontal: -20,
     marginBottom: 18,
-    paddingHorizontal: 20,
-    paddingTop: 18,
-    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -193,14 +192,14 @@ const styles: Record<string, any> = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: '#FFFFFF',
+    color: colors.text,
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: '#DDEFE5',
+    color: colors.muted,
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,

@@ -129,19 +129,20 @@ function EmptyState() {
 export default function AdvisoryListScreen() {
   const params = useLocalSearchParams<{ crop?: string; stage?: string; category?: string }>();
   const { width } = useWindowDimensions();
-  const [isLoading, setIsLoading] = useState(true);
   const crop = parseCrop(params.crop);
   const category = parseCategory(params.category);
   const stage = typeof params.stage === 'string' ? params.stage : 'flowering';
   const cardWidth = Math.min(width - 32, 620);
+  const loadingKey = `${crop}-${category}-${stage}`;
+  const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const isLoading = loadedKey !== loadingKey;
 
   const advisories = useMemo(() => filterAdvisoriesByStage(crop, category, stage), [crop, category, stage]);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timeout = setTimeout(() => setIsLoading(false), 250);
+    const timeout = setTimeout(() => setLoadedKey(loadingKey), 250);
     return () => clearTimeout(timeout);
-  }, [crop, category, stage]);
+  }, [loadingKey]);
 
   const renderItem: ListRenderItem<AdvisoryItem> = ({ item }) => <AdvisoryCard item={item} cardWidth={cardWidth} />;
 
