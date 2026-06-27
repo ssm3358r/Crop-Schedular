@@ -5,6 +5,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HeroCard } from '@/components/HeroCard';
+import WelcomeScreen from './welcome';
 
 const colors = {
   primary: '#0F4D2E',
