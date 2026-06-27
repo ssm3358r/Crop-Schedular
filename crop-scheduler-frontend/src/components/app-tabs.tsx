@@ -15,6 +15,8 @@ export default function AppTabs() {
       <Stack.Screen name="pest-list" />
       <Stack.Screen name="disease-list" />
       <Stack.Screen name="nutrition-advisory" />
+      <Stack.Screen name="NutritionStagesScreen" />
+      <Stack.Screen name="NutritionDetailScreen" />
     </Stack>
   );
 }

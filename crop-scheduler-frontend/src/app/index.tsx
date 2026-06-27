@@ -4,9 +4,18 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
-import WelcomeScreen from './welcome';
+
+const colors = {
+  primary: '#0F4D2E',
+  secondary: '#3F7D57',
+  background: '#F7F6F2',
+  accent: '#D6A331',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  card: '#FFFFFF',
+  line: '#E5E2DA',
+};
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -27,37 +36,37 @@ const features = [
     title: 'Crop Advisory',
     subtitle: 'Pest • Disease • Nutrition',
     description: 'Get stage-wise crop recommendations for Cotton and Chilli.',
-    color: colors.mint,
-    accent: colors.primary,
+    color: '#DDEFE5',
+    accent: '#0F4D2E',
   },
   {
     icon: icons.learning,
     title: 'Learning Center',
     subtitle: 'Expert Farming Videos',
     description: 'Watch informative videos uploaded by FPS experts.',
-    color: colors.peach,
-    accent: '#D99900',
+    color: '#FFF3DA',
+    accent: '#B88316',
   },
   {
     icon: icons.product,
     title: 'Product Catalog',
     subtitle: 'FPS Products',
     description: 'Browse insecticides, fungicides and nutrition products.',
-    color: colors.sky,
-    accent: '#2D76B9',
+    color: '#E1F0FA',
+    accent: '#1685B5',
   },
 ];
 
 const advisories = [
-  { title: 'Pink Bollworm Alert', crop: 'Cotton', tint: '#FDE7F0', pest: '#E25286' },
-  { title: 'Whitefly Management', crop: 'Cotton', tint: colors.mint, pest: '#F8FAFC' },
-  { title: 'Thrips Control', crop: 'Chilli', tint: '#FFF1E8', pest: '#F97316' },
+  { title: 'Pink Bollworm Alert', crop: 'Cotton', tint: '#F5E5ED', pest: '#C85E84' },
+  { title: 'Whitefly Management', crop: 'Cotton', tint: '#DDEFE5', pest: '#F8FAFC' },
+  { title: 'Thrips Control', crop: 'Chilli', tint: '#FFF3DA', pest: '#D96C2C' },
 ];
 
 const videos = [
-  { title: 'Cotton early stage pest scouting', duration: '05:24', color: colors.mint },
-  { title: 'Chilli disease control practices', duration: '07:12', color: '#FFE7DC' },
-  { title: 'Balanced nutrition for better yield', duration: '04:38', color: colors.sky },
+  { title: 'Cotton early stage pest scouting', duration: '05:24', color: '#DDEFE5' },
+  { title: 'Chilli disease control practices', duration: '07:12', color: '#FFF3DA' },
+  { title: 'Balanced nutrition for better yield', duration: '04:38', color: '#E1F0FA' },
 ];
 
 const navItems = [
@@ -236,7 +245,7 @@ export default function HomeScreen() {
       <View style={styles.bottomNav}>
         {navItems.map((item) => (
           <Pressable key={item.label} style={[styles.navItem, item.active && styles.navItemActive]}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -246,7 +255,7 @@ export default function HomeScreen() {
 }
 
 const shadow = {
-  shadowColor: colors.shadow,
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 10 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
@@ -352,8 +361,9 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   banner: {
+    backgroundColor: colors.card,
     borderColor: colors.line,
-    borderRadius: 20,
+    borderRadius: 24,
     borderWidth: 1,
     flexDirection: 'row',
     minHeight: 176,
@@ -385,16 +395,72 @@ const styles = StyleSheet.create({
     minHeight: 48,
     paddingHorizontal: 18,
   },
-  primaryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '800',
-    letterSpacing: 0,
+  primaryButtonText: { color: '#FFFFFF', fontSize: 15, fontWeight: '800', letterSpacing: 0 },
+  farmArt: { bottom: 0, height: 164, position: 'absolute', right: -3, width: 170 },
+  noPointer: { pointerEvents: 'none' },
+  sun: { backgroundColor: '#F2C45D', borderRadius: 18, height: 36, position: 'absolute', right: 22, top: 16, width: 36 },
+  cloudOne: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    height: 24,
+    opacity: 0.9,
+    position: 'absolute',
+    right: 63,
+    top: 24,
+    width: 58,
   },
-  featureGrid: {
-    gap: 14,
-    marginTop: 18,
+  cloudTwo: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
+    height: 18,
+    opacity: 0.9,
+    position: 'absolute',
+    right: 47,
+    top: 36,
+    width: 44,
   },
+  field: {
+    backgroundColor: '#D4E8C6',
+    borderTopLeftRadius: 70,
+    bottom: -12,
+    height: 98,
+    overflow: 'hidden',
+    position: 'absolute',
+    right: -12,
+    width: 190,
+  },
+  cropRow: { flexDirection: 'row', gap: 11, position: 'absolute', right: 8 },
+  cropPlant: { alignItems: 'center', height: 24, justifyContent: 'flex-end', width: 13 },
+  leafLeft: {
+    backgroundColor: colors.primary,
+    borderBottomLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: 13,
+    position: 'absolute',
+    right: 6,
+    top: 5,
+    transform: [{ rotate: '-28deg' }],
+    width: 9,
+  },
+  leafRight: {
+    backgroundColor: colors.secondary,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    height: 13,
+    left: 6,
+    position: 'absolute',
+    top: 5,
+    transform: [{ rotate: '28deg' }],
+    width: 9,
+  },
+  cropDot: { borderRadius: 4, height: 8, position: 'absolute', top: 2, width: 8 },
+  cottonDot: { backgroundColor: '#FFFFFF' },
+  chilliDot: { backgroundColor: '#D96C2C' },
+  farmer: { alignItems: 'center', bottom: 38, position: 'absolute', right: 76 },
+  hat: { backgroundColor: colors.accent, borderRadius: 12, height: 12, width: 42 },
+  face: { backgroundColor: '#C98555', borderRadius: 12, height: 22, marginTop: -2, width: 22 },
+  body: { backgroundColor: colors.primary, borderTopLeftRadius: 14, borderTopRightRadius: 14, height: 32, marginTop: 1, width: 32 },
+  featureGrid: { gap: 14, marginTop: 18 },
   featureCard: {
     backgroundColor: colors.card,
     borderColor: colors.line,
@@ -405,40 +471,11 @@ const styles = StyleSheet.create({
     padding: 18,
     ...shadow,
   },
-  featureTop: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  featureIcon: {
-    alignItems: 'center',
-    borderRadius: 16,
-    height: 48,
-    justifyContent: 'center',
-    width: 48,
-  },
-  arrowCircle: {
-    alignItems: 'center',
-    backgroundColor: colors.mint,
-    borderRadius: 15,
-    height: 30,
-    justifyContent: 'center',
-    width: 30,
-  },
-  featureArt: {
-    height: 54,
-    position: 'absolute',
-    right: 16,
-    top: 62,
-    width: 86,
-  },
-  artCircle: {
-    borderRadius: 27,
-    height: 54,
-    position: 'absolute',
-    right: 0,
-    width: 54,
-  },
+  featureTop: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between' },
+  featureIcon: { alignItems: 'center', borderRadius: 16, height: 48, justifyContent: 'center', width: 48 },
+  arrowCircle: { alignItems: 'center', backgroundColor: '#DDEFE5', borderRadius: 15, height: 30, justifyContent: 'center', width: 30 },
+  featureArt: { height: 54, position: 'absolute', right: 16, top: 62, width: 86 },
+  artCircle: { borderRadius: 27, height: 54, position: 'absolute', right: 0, width: 54 },
   toolHandle: {
     backgroundColor: '#B68655',
     borderRadius: 4,
@@ -587,35 +624,11 @@ const styles = StyleSheet.create({
     marginTop: 12,
     minHeight: 40,
   },
-  advisoryFooter: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10,
-  },
-  cropName: {
-    color: colors.muted,
-    fontSize: 13,
-    fontWeight: '800',
-    letterSpacing: 0,
-  },
-  viewButton: {
-    backgroundColor: colors.mint,
-    borderRadius: 13,
-    minHeight: 32,
-    paddingHorizontal: 14,
-    justifyContent: 'center',
-  },
-  viewButtonText: {
-    color: colors.primary,
-    fontSize: 13,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  videoList: {
-    gap: 13,
-    marginTop: 14,
-  },
+  advisoryFooter: { alignItems: 'center', flexDirection: 'row', justifyContent: 'space-between', marginTop: 10 },
+  cropName: { color: colors.muted, fontSize: 13, fontWeight: '800', letterSpacing: 0 },
+  viewButton: { backgroundColor: '#DDEFE5', borderRadius: 13, minHeight: 32, paddingHorizontal: 14, justifyContent: 'center' },
+  viewButtonText: { color: colors.primary, fontSize: 13, fontWeight: '900', letterSpacing: 0 },
+  videoList: { gap: 13, marginTop: 14 },
   videoCard: {
     alignItems: 'center',
     backgroundColor: colors.card,
@@ -628,35 +641,10 @@ const styles = StyleSheet.create({
     padding: 12,
     ...shadow,
   },
-  videoThumb: {
-    borderRadius: 17,
-    height: 80,
-    overflow: 'hidden',
-    width: 104,
-  },
-  videoHillBack: {
-    backgroundColor: colors.badge,
-    borderRadius: 46,
-    bottom: -22,
-    height: 62,
-    left: -10,
-    position: 'absolute',
-    width: 94,
-  },
-  videoHillFront: {
-    backgroundColor: colors.secondary,
-    borderRadius: 45,
-    bottom: -28,
-    height: 72,
-    position: 'absolute',
-    right: -15,
-    width: 104,
-  },
-  videoPlant: {
-    bottom: 23,
-    position: 'absolute',
-    right: 28,
-  },
+  videoThumb: { borderRadius: 20, height: 80, overflow: 'hidden', width: 104 },
+  videoHillBack: { backgroundColor: '#BFD8AD', borderRadius: 46, bottom: -22, height: 62, left: -10, position: 'absolute', width: 94 },
+  videoHillFront: { backgroundColor: colors.secondary, borderRadius: 45, bottom: -28, height: 72, position: 'absolute', right: -15, width: 104 },
+  videoPlant: { bottom: 23, position: 'absolute', right: 28 },
   videoLeafLeft: {
     backgroundColor: colors.primary,
     borderBottomLeftRadius: 14,
@@ -696,7 +684,7 @@ const styles = StyleSheet.create({
   durationPill: {
     alignItems: 'center',
     alignSelf: 'flex-start',
-    backgroundColor: colors.mint,
+    backgroundColor: '#DDEFE5',
     borderRadius: 12,
     flexDirection: 'row',
     gap: 5,
@@ -733,24 +721,8 @@ const styles = StyleSheet.create({
     width: '91%',
     ...shadow,
   },
-  navItem: {
-    alignItems: 'center',
-    borderRadius: 22,
-    flex: 1,
-    gap: 4,
-    minHeight: 58,
-    justifyContent: 'center',
-  },
-  navItemActive: {
-    backgroundColor: colors.primary,
-  },
-  navLabel: {
-    color: colors.inactive,
-    fontSize: 11,
-    fontWeight: '800',
-    letterSpacing: 0,
-  },
-  navLabelActive: {
-    color: '#FFFFFF',
-  },
+  navItem: { alignItems: 'center', borderRadius: 22, flex: 1, gap: 4, minHeight: 58, justifyContent: 'center' },
+  navItemActive: { backgroundColor: colors.primary },
+  navLabel: { color: '#7A8079', fontSize: 11, fontWeight: '800', letterSpacing: 0 },
+  navLabelActive: { color: '#FFFFFF' },
 });
