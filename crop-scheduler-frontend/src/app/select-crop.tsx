@@ -5,8 +5,18 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
+
+const colors = {
+  primary: '#0F4D2E',
+  secondary: '#3F7D57',
+  background: '#F7F6F2',
+  accent: '#D6A331',
+  card: '#FFFFFF',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  line: '#E5E2DA',
+};
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -22,25 +32,25 @@ const icons = {
 
 type CropId = 'cotton' | 'chilli';
 
-const crops: {
+const crops: Array<{
   id: CropId;
   title: string;
   subtitle: string;
   tint: string;
   accent: string;
-}[] = [
+}> = [
   {
     id: 'cotton',
     title: 'Cotton',
     subtitle: 'Complete advisory for every growth stage',
-    tint: colors.mint,
-    accent: colors.primary,
+    tint: '#DDEFE5',
+    accent: '#0F4D2E',
   },
   {
     id: 'chilli',
     title: 'Chilli',
     subtitle: 'Complete advisory for every growth stage',
-    tint: '#FFF0E8',
+    tint: '#FFF3DA',
     accent: '#E53935',
   },
 ];
@@ -160,7 +170,7 @@ export default function SelectCropScreen() {
                 router.push('/');
               }
             }}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -170,28 +180,33 @@ export default function SelectCropScreen() {
 }
 
 const shadow = {
-  shadowColor: colors.shadow,
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
   elevation: 5,
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, any> = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 12,
+    paddingTop: 0,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
+    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
+    marginHorizontal: -20,
     marginBottom: 18,
+    paddingHorizontal: 20,
+    paddingTop: 18,
+    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -209,56 +224,167 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: colors.text,
+    color: '#FFFFFF',
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: colors.muted,
+    color: '#DDEFE5',
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
     lineHeight: 21,
     marginTop: 5,
   },
-  cropList: {
-    gap: 16,
-    marginTop: 20,
-  },
-  cropCard: {
+  heroCard: {
     backgroundColor: colors.card,
-    borderColor: colors.line,
+    borderColor: '#DDEDDD',
     borderRadius: 24,
     borderWidth: 1,
-    minHeight: 216,
+    minHeight: 172,
     overflow: 'hidden',
-    padding: 16,
+    padding: 18,
     ...shadow,
   },
-  cardPressed: {
-    opacity: 0.86,
-    transform: [{ scale: 0.99 }],
+  heroEyebrow: {
+    color: colors.primary,
+    fontSize: 13,
+    fontWeight: '900',
+    letterSpacing: 0,
   },
-  cropIllustrationWrap: {
-    alignItems: 'center',
-    borderRadius: 20,
-    height: 112,
-    justifyContent: 'center',
-    overflow: 'hidden',
+  heroTitle: {
+    color: colors.text,
+    fontSize: 22,
+    fontWeight: '900',
+    letterSpacing: 0,
+    lineHeight: 28,
+    marginTop: 5,
+    maxWidth: 185,
   },
-  cropPhoto: {
-    height: '100%',
-    width: '100%',
-  },
-  photoOverlay: {
-    backgroundColor: 'rgba(15, 82, 27, 0.08)',
+  heroArt: {
     bottom: 0,
-    left: 0,
+    height: 160,
+    pointerEvents: 'none',
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: -2,
+    width: 205,
+  },
+  heroSun: {
+    backgroundColor: '#FFD76A',
+    borderRadius: 22,
+    height: 44,
+    position: 'absolute',
+    right: 24,
+    top: 10,
+    width: 44,
+  },
+  heroCloudOne: {
+    backgroundColor: '#EFF8EF',
+    borderRadius: 18,
+    height: 24,
+    position: 'absolute',
+    right: 78,
+    top: 23,
+    width: 64,
+  },
+  heroCloudTwo: {
+    backgroundColor: '#EFF8EF',
+    borderRadius: 18,
+    height: 20,
+    position: 'absolute',
+    right: 62,
+    top: 36,
+    width: 48,
+  },
+  heroField: {
+    backgroundColor: '#D4EDBF',
+    borderTopLeftRadius: 86,
+    bottom: -10,
+    height: 100,
+    overflow: 'hidden',
+    position: 'absolute',
+    right: -12,
+    width: 218,
+  },
+  heroCropRow: {
+    flexDirection: 'row',
+    gap: 10,
+    position: 'absolute',
+    right: 10,
+  },
+  heroCrop: {
+    alignItems: 'center',
+    height: 23,
+    justifyContent: 'flex-end',
+    width: 13,
+  },
+  heroLeafLeft: {
+    backgroundColor: '#0F4D2E',
+    borderBottomLeftRadius: 10,
+    borderTopRightRadius: 10,
+    height: 13,
+    position: 'absolute',
+    right: 6,
+    top: 4,
+    transform: [{ rotate: '-28deg' }],
+    width: 9,
+  },
+  heroLeafRight: {
+    backgroundColor: '#3F7D57',
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    height: 13,
+    left: 6,
+    position: 'absolute',
+    top: 4,
+    transform: [{ rotate: '28deg' }],
+    width: 9,
+  },
+  heroBud: {
+    backgroundColor: '#E53935',
+    borderRadius: 4,
+    height: 8,
+    position: 'absolute',
+    top: 1,
+    width: 8,
+  },
+  heroBudWhite: {
+    backgroundColor: '#FFFFFF',
+  },
+  heroFarmer: {
+    alignItems: 'center',
+    bottom: 40,
+    position: 'absolute',
+    right: 92,
+  },
+  farmerHat: {
+    backgroundColor: colors.accent,
+    borderRadius: 13,
+    height: 13,
+    width: 46,
+  },
+  farmerHead: {
+    backgroundColor: '#C98555',
+    borderRadius: 13,
+    height: 25,
+    marginTop: -2,
+    width: 25,
+  },
+  farmerScarf: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    height: 8,
+    marginTop: -1,
+    width: 30,
+  },
+  farmerBody: {
+    backgroundColor: colors.primary,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    height: 34,
+    width: 36,
   },
   cropCopy: {
     marginTop: 15,
@@ -287,7 +413,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     alignItems: 'center',
-    backgroundColor: colors.mint,
+    backgroundColor: '#DDEFE5',
     borderRadius: 13,
     flexDirection: 'row',
     gap: 5,
@@ -302,7 +428,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-    backgroundColor: colors.mint,
+    backgroundColor: '#DDEFE5',
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -351,7 +477,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-    borderColor: colors.line,
+    borderColor: '#E5E2DA',
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -375,7 +501,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-    color: colors.inactive,
+    color: '#7A8079',
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,
