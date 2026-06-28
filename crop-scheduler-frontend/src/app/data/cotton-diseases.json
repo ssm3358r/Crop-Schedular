@@ -1,0 +1,227 @@
+{
+  "crop": "cotton",
+  "category": "disease",
+  "diseases": [
+    {
+      "id": "cotton-leaf-curl-virus",
+      "name": "Cotton Leaf Curl Virus (CLCuV)",
+      "imageKey": "leaf-curl-virus-cotton",
+      "stage": [
+        "vegetative",
+        "flowering",
+        "boll-development"
+      ],
+      "vector": "Whitefly (Bemisia tabaci)",
+      "whatIsIt": "A serious viral disease transmitted primarily by whiteflies. It stunts plant growth, reduces boll formation and causes severe yield losses.",
+      "whenOccurs": [
+        "Warm weather",
+        "Humid weather",
+        "Vegetative stage onwards",
+        "High whitefly population"
+      ],
+      "symptoms": [
+        "Upward leaf curling",
+        "Downward leaf curling",
+        "Thickened veins",
+        "Stunted growth",
+        "Reduced boll formation",
+        "Poor plant vigor"
+      ],
+      "damage": [
+        "Reduced plant growth",
+        "Reduced boll development",
+        "Poor yield",
+        "Severe economic losses in early infections"
+      ],
+      "solution": {
+        "cultural": [
+          "Use resistant varieties",
+          "Remove infected plants",
+          "Remove alternate host weeds"
+        ],
+        "monitoring": [
+          "Monitor whitefly population",
+          "Install yellow sticky traps"
+        ],
+        "chemical": [
+          "Imidacloprid 17.8 SL @ 200 ml/ha",
+          "Thiamethoxam 25 WG @ 100 g/ha"
+        ]
+      }
+    },
+
+    {
+      "id": "root-rot",
+      "name": "Root Rot",
+      "causalOrganisms": [
+        "Rhizoctonia",
+        "Fusarium",
+        "Macrophomina"
+      ],
+      "imageKey": "root-rot",
+      "stage": [
+        "seedling-establishment",
+        "vegetative",
+        "flowering",
+        "boll-development"
+      ],
+      "whatIsIt": "A soil-borne fungal disease that damages roots and restricts water and nutrient uptake.",
+      "whenOccurs": [
+        "Hot weather",
+        "Dry conditions",
+        "Moisture stress",
+        "Poorly drained fields",
+        "Continuous cotton cultivation"
+      ],
+      "symptoms": [
+        "Sudden wilting",
+        "Yellowing leaves",
+        "Brown leaves",
+        "Dark brown roots",
+        "Black collar region",
+        "Root cortex peeling",
+        "Discolored vascular tissues",
+        "Plant death in patches"
+      ],
+      "damage": [
+        "Root destruction",
+        "Reduced nutrient absorption",
+        "Reduced water uptake",
+        "Poor boll development",
+        "Premature drying",
+        "Yield loss"
+      ],
+      "solution": {
+        "seedTreatment": [
+          "Trichoderma viride @ 4 g/kg seed",
+          "Carbendazim @ 2 g/kg seed"
+        ],
+        "soilManagement": [
+          "Ensure proper drainage",
+          "Avoid waterlogging",
+          "Follow crop rotation"
+        ],
+        "biological": [
+          "Apply Trichoderma spp. in soil"
+        ],
+        "chemical": [
+          "Carbendazim + Mancozeb soil drench (1 g/L each)"
+        ]
+      }
+    },
+
+    {
+      "id": "fusarium-wilt",
+      "name": "Fusarium Wilt",
+      "scientificName": "Fusarium oxysporum",
+      "imageKey": "fusarium-wilt",
+      "stage": [
+        "flowering",
+        "boll-development"
+      ],
+      "whatIsIt": "A serious soil-borne fungal disease that infects the vascular system and blocks water and nutrient movement.",
+      "whenOccurs": [
+        "Warm soil temperatures (25-30°C)",
+        "Poor drainage",
+        "Continuous cotton cultivation",
+        "Flowering stage",
+        "Boll formation stage"
+      ],
+      "symptoms": [
+        "Yellowing of lower leaves",
+        "Browning of leaves",
+        "Brown petioles",
+        "Brown veins",
+        "Wilting",
+        "Drooping leaves",
+        "Brown vascular tissue",
+        "Black vascular tissue",
+        "Stunted growth",
+        "Premature leaf drop"
+      ],
+      "damage": [
+        "Water transport blockage",
+        "Nutrient transport blockage",
+        "Reduced boll production",
+        "Reduced plant vigor",
+        "Premature plant death",
+        "Heavy yield loss"
+      ],
+      "solution": {
+        "preventive": [
+          "Use disease-free seed",
+          "Use resistant varieties",
+          "Practice crop rotation",
+          "Maintain proper drainage"
+        ],
+        "biological": [
+          "Trichoderma asperellum @ 1 kg/acre",
+          "Apply during sowing",
+          "Apply at 90 DAS"
+        ],
+        "chemical": [
+          "Carbendazim @ 2 g/kg seed",
+          "Fungicide drenching in affected areas"
+        ]
+      }
+    },
+
+    {
+      "id": "alternaria-leaf-spot",
+      "name": "Alternaria Leaf Spot",
+      "scientificName": "Alternaria macrospora",
+      "imageKey": "alternaria-leaf-spot",
+      "stage": [
+        "flowering",
+        "boll-development",
+        "boll-maturity"
+      ],
+      "whatIsIt": "A fungal disease that affects cotton leaves, reducing photosynthesis and weakening the plant.",
+      "whenOccurs": [
+        "Warm weather",
+        "Humid weather",
+        "Frequent rainfall",
+        "Flowering stage",
+        "Boll development stage",
+        "Potassium deficient fields"
+      ],
+      "symptoms": [
+        "Small brown spots",
+        "Dark brown spots",
+        "Circular lesions",
+        "Target board appearance",
+        "Concentric rings",
+        "Leaf brittleness",
+        "Premature leaf fall",
+        "Lesions on stems",
+        "Lesions on bracts",
+        "Lesions on bolls"
+      ],
+      "damage": [
+        "Reduced photosynthesis",
+        "Weak plant growth",
+        "Poor boll development",
+        "Premature defoliation",
+        "Poor boll filling",
+        "Reduced yield"
+      ],
+      "solution": {
+        "cultural": [
+          "Balanced fertilization",
+          "Adequate potassium application",
+          "Remove infected debris",
+          "Improve field aeration",
+          "Maintain proper spacing"
+        ],
+        "biological": [
+          "Use Trichoderma based biofungicides"
+        ],
+        "chemical": [
+          "Mancozeb 75 WP @ 2.5 g/L",
+          "Chlorothalonil @ 2 ml/L",
+          "Repeat after 10-15 days if required"
+        ]
+      }
+    }
+  ]
+}

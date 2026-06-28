@@ -4,15 +4,17 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { HeroCard } from '@/components/HeroCard';
+
 const colors = {
-  primary: '#2E7D32',
-  secondary: '#66BB6A',
-  background: '#F8FAF8',
-  accent: '#FFC107',
+  primary: '#0F4D2E',
+  secondary: '#3F7D57',
+  background: '#F7F6F2',
+  accent: '#D6A331',
   card: '#FFFFFF',
-  text: '#1E293B',
-  muted: '#64748B',
-  line: '#E2ECE2',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  line: '#E5E2DA',
 };
 
 const icons = {
@@ -50,40 +52,40 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Early Growth',
       description: 'Healthy seed germination and establishment.',
       icon: icons.nursery,
-      tint: '#EAF7EA',
-      accent: '#2E7D32',
+      tint: '#DDEFE5',
+      accent: '#0F4D2E',
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Rapid leaf and stem development.',
       icon: icons.stage,
-      tint: '#EDF9EE',
-      accent: '#43A047',
+      tint: '#DDEFE5',
+      accent: '#3F7D57',
     },
     {
       id: 'flowering',
       name: 'Flowering Stage',
       description: 'Flower buds and flowering begin.',
       icon: icons.flower,
-      tint: '#FFF8E1',
-      accent: '#D99900',
+      tint: '#FFF3DA',
+      accent: '#B88316',
     },
     {
       id: 'boll-development',
       name: 'Boll Development',
       description: 'Bolls start developing.',
       icon: icons.cotton,
-      tint: '#F1F5F9',
-      accent: '#64748B',
+      tint: '#F7F6F2',
+      accent: '#6E766F',
     },
     {
       id: 'boll-maturity',
       name: 'Boll Maturity',
       description: 'Crop is ready for harvesting.',
       icon: icons.basket,
-      tint: '#FFF3E4',
-      accent: '#B7791F',
+      tint: '#FFF3DA',
+      accent: '#B88316',
     },
   ],
   chilli: [
@@ -92,39 +94,39 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Nursery Stage',
       description: 'Strong seedlings begin with careful nursery care.',
       icon: icons.nursery,
-      tint: '#EAF7EA',
-      accent: '#2E7D32',
+      tint: '#DDEFE5',
+      accent: '#0F4D2E',
     },
     {
       id: 'transplanting',
       name: 'Transplanting',
       description: 'Seedlings move to the main field for establishment.',
       icon: icons.transplant,
-      tint: '#F0FAEA',
-      accent: '#43A047',
+      tint: '#DDEFE5',
+      accent: '#3F7D57',
     },
     {
       id: 'vegetative',
       name: 'Vegetative Stage',
       description: 'Leaf, branch and canopy growth accelerates.',
       icon: icons.stage,
-      tint: '#EDF9EE',
-      accent: '#2E7D32',
+      tint: '#DDEFE5',
+      accent: '#0F4D2E',
     },
     {
       id: 'flowering',
       name: 'Flowering Stage',
       description: 'Flower initiation needs careful crop protection.',
       icon: icons.flower,
-      tint: '#FFF8E1',
-      accent: '#D99900',
+      tint: '#FFF3DA',
+      accent: '#B88316',
     },
     {
       id: 'fruit-setting',
       name: 'Fruit Setting',
       description: 'Flowers convert into young chilli fruits.',
       icon: icons.fruit,
-      tint: '#FFEDE7',
+      tint: '#FFF3DA',
       accent: '#E53935',
     },
     {
@@ -132,7 +134,7 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Fruit Development',
       description: 'Fruit size, color and quality develop.',
       icon: icons.fruit,
-      tint: '#FFF1E8',
+      tint: '#FFF3DA',
       accent: '#F97316',
     },
     {
@@ -140,8 +142,8 @@ const stageContent: Record<CropId, GrowthStage[]> = {
       name: 'Harvesting',
       description: 'Pick mature fruits at the right marketable stage.',
       icon: icons.basket,
-      tint: '#FFF3E4',
-      accent: '#B7791F',
+      tint: '#FFF3DA',
+      accent: '#B88316',
     },
   ],
 };
@@ -164,33 +166,6 @@ function AppIcon({
   color?: string;
 }) {
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
-}
-
-function HeaderCropArt({ crop }: { crop: CropId }) {
-  const isCotton = crop === 'cotton';
-
-  return (
-    <View style={styles.cropArt}>
-      <View style={styles.artSun} />
-      <View style={styles.artField}>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <View key={index} style={[styles.artPlant, { left: 16 + index * 24 }]}>
-            <View style={styles.artStem} />
-            <View style={styles.artLeafLeft} />
-            <View style={styles.artLeafRight} />
-            {isCotton ? (
-              <View style={styles.artCotton} />
-            ) : (
-              <View style={[styles.artChilli, index % 2 === 0 && styles.artChilliAlt]} />
-            )}
-          </View>
-        ))}
-      </View>
-      <View style={styles.cropBadge}>
-        <Text style={styles.cropBadgeText}>{isCotton ? 'Cotton' : 'Chilli'}</Text>
-      </View>
-    </View>
-  );
 }
 
 function StageCard({
@@ -259,18 +234,11 @@ export default function GrowthStageScreen() {
           </View>
         </View>
 
-        <View style={styles.headerCard}>
-          <View style={styles.headerCopy}>
-            <Text style={styles.cropLabel}>
-              {cropEmoji} {cropName}
-            </Text>
-            <Text style={styles.headerTitle}>You selected {cropName}</Text>
-            <Text style={styles.headerText}>
-              Pick the stage that best matches your field today.
-            </Text>
-          </View>
-          <HeaderCropArt crop={crop} />
-        </View>
+        <HeroCard
+          eyebrow={`${cropEmoji} ${cropName}`}
+          title={`You selected ${cropName}`}
+          subtitle="Pick the stage that best matches your field today."
+        />
 
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Growth Stage Timeline</Text>
@@ -299,7 +267,7 @@ export default function GrowthStageScreen() {
                 router.push('/');
               }
             }}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7C8A80'} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -309,28 +277,33 @@ export default function GrowthStageScreen() {
 }
 
 const shadow = {
-  shadowColor: '#1B5E20',
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
   elevation: 5,
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, any> = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 12,
+    paddingTop: 0,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
+    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
+    marginHorizontal: -20,
     marginBottom: 18,
+    paddingHorizontal: 20,
+    paddingTop: 18,
+    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -348,14 +321,14 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: colors.text,
+    color: '#FFFFFF',
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: colors.muted,
+    color: '#DDEFE5',
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
@@ -419,7 +392,7 @@ const styles = StyleSheet.create({
     width: 40,
   },
   artField: {
-    backgroundColor: '#D6EDC3',
+    backgroundColor: '#D4E8C6',
     borderTopLeftRadius: 78,
     bottom: -10,
     height: 94,
@@ -444,7 +417,7 @@ const styles = StyleSheet.create({
     width: 5,
   },
   artLeafLeft: {
-    backgroundColor: '#2E7D32',
+    backgroundColor: '#0F4D2E',
     borderBottomLeftRadius: 12,
     borderTopRightRadius: 12,
     bottom: 20,
@@ -494,7 +467,7 @@ const styles = StyleSheet.create({
   },
   cropBadge: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: '#DDEFE5',
     borderRadius: 14,
     bottom: 16,
     justifyContent: 'center',
@@ -509,39 +482,9 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0,
   },
-  sectionHeader: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 24,
-    marginBottom: 14,
-  },
-  sectionTitle: {
-    color: colors.text,
-    fontSize: 20,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  stageCount: {
-    color: colors.primary,
-    fontSize: 13,
-    fontWeight: '900',
-    letterSpacing: 0,
-  },
-  timeline: {
-    gap: 0,
-  },
-  timelineItem: {
-    flexDirection: 'row',
-    minHeight: 128,
-  },
-  timelineRail: {
-    alignItems: 'center',
-    width: 24,
-  },
   timelineDot: {
     backgroundColor: colors.primary,
-    borderColor: '#DFF2DF',
+    borderColor: '#EFECE4',
     borderRadius: 9,
     borderWidth: 4,
     height: 18,
@@ -550,7 +493,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   timelineLine: {
-    backgroundColor: '#CFE4CF',
+    backgroundColor: '#D8D5CC',
     flex: 1,
     marginTop: -1,
     width: 2,
@@ -615,7 +558,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: '#DDEFE5',
     borderRadius: 17,
     height: 34,
     justifyContent: 'center',
@@ -625,7 +568,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-    borderColor: '#DCEADC',
+    borderColor: '#E5E2DA',
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -649,7 +592,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-    color: '#7C8A80',
+    color: '#7A8079',
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

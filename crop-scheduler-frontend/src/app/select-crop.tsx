@@ -1,19 +1,21 @@
 import { router } from 'expo-router';
-import { Image } from 'expo-image';
 import { SymbolView } from 'expo-symbols';
 import type { SymbolViewProps } from 'expo-symbols';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { CropCard } from '@/components/advisory/CropCard';
+import { HeroCard } from '@/components/HeroCard';
+
 const colors = {
-  primary: '#2E7D32',
-  secondary: '#66BB6A',
-  background: '#F8FAF8',
-  accent: '#FFC107',
+  primary: '#0F4D2E',
+  secondary: '#3F7D57',
+  background: '#F7F6F2',
+  accent: '#D6A331',
   card: '#FFFFFF',
-  text: '#1E293B',
-  muted: '#64748B',
-  line: '#E2ECE2',
+  text: '#1F2F27',
+  muted: '#6E766F',
+  line: '#E5E2DA',
 };
 
 const icons = {
@@ -34,6 +36,7 @@ const crops: Array<{
   id: CropId;
   title: string;
   subtitle: string;
+  image: ImageSourcePropType;
   tint: string;
   accent: string;
 }> = [
@@ -41,16 +44,18 @@ const crops: Array<{
     id: 'cotton',
     title: 'Cotton',
     subtitle: 'Complete advisory for every growth stage',
-    tint: '#EAF7EA',
-    accent: '#2E7D32',
+    image: require('@/assets/images/crops/CottonCrop.png'),
+    tint: '#DDEFE5',
+    accent: '#0F4D2E',
   },
-  {
-    id: 'chilli',
-    title: 'Chilli',
-    subtitle: 'Complete advisory for every growth stage',
-    tint: '#FFF0E8',
-    accent: '#E53935',
-  },
+ {
+  id: 'chilli',
+  title: 'Chilli',
+  subtitle: 'Complete advisory for every growth stage',
+  image: require('@/assets/images/crops/chilli.png'),
+  tint: '#FFF3DA',
+  accent: '#E53935',
+},
 ];
 
 const chips = ['Pest Management', 'Disease Management', 'Nutrition Guide'];
@@ -75,109 +80,6 @@ function AppIcon({
   return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
 }
 
-function HeroIllustration() {
-  return (
-    <View style={styles.heroArt}>
-      <View style={styles.heroSun} />
-      <View style={styles.heroCloudOne} />
-      <View style={styles.heroCloudTwo} />
-      <View style={styles.heroField}>
-        {Array.from({ length: 6 }).map((_, row) => (
-          <View key={row} style={[styles.heroCropRow, { bottom: 8 + row * 12 }]}>
-            {Array.from({ length: 9 }).map((__, item) => (
-              <View key={item} style={styles.heroCrop}>
-                <View style={styles.heroLeafLeft} />
-                <View style={styles.heroLeafRight} />
-                <View style={[styles.heroBud, item % 3 === 0 && styles.heroBudWhite]} />
-              </View>
-            ))}
-          </View>
-        ))}
-      </View>
-      <View style={styles.heroFarmer}>
-        <View style={styles.farmerHat} />
-        <View style={styles.farmerHead} />
-        <View style={styles.farmerScarf} />
-        <View style={styles.farmerBody} />
-      </View>
-    </View>
-  );
-}
-
-function CottonPlant() {
-  return (
-    <View style={styles.cropArt}>
-      <View style={styles.stemTall} />
-      <View style={[styles.plantLeaf, styles.leafA]} />
-      <View style={[styles.plantLeaf, styles.leafB]} />
-      <View style={[styles.plantLeaf, styles.leafC]} />
-      <View style={[styles.cottonBud, styles.cottonBudA]} />
-      <View style={[styles.cottonBud, styles.cottonBudB]} />
-      <View style={[styles.cottonBud, styles.cottonBudC]} />
-      <View style={styles.soil} />
-    </View>
-  );
-}
-
-function ChilliPlant() {
-  return (
-    <View style={styles.cropArt}>
-      <View style={styles.stemTall} />
-      <View style={[styles.plantLeaf, styles.leafA]} />
-      <View style={[styles.plantLeaf, styles.leafB]} />
-      <View style={[styles.plantLeaf, styles.leafC]} />
-      <View style={[styles.chilliFruit, styles.chilliA]} />
-      <View style={[styles.chilliFruit, styles.chilliB]} />
-      <View style={[styles.chilliFruit, styles.chilliC]} />
-      <View style={styles.soil} />
-    </View>
-  );
-}
-
-function CropCard({ crop }: { crop: (typeof crops)[number] }) {
-  return (
-    <Pressable
-      style={({ pressed }) => [styles.cropCard, pressed && styles.cardPressed]}
-      onPress={() =>
-        router.push({
-          pathname: '/growth-stage',
-          params: { crop: crop.id },
-        })
-      }>
-      <View style={[styles.cropIllustrationWrap, { backgroundColor: crop.tint }]}>
-        <Image
-          source={
-            crop.id === 'cotton'
-              ? require('@/assets/images/crops/cotton.png')
-              : require('@/assets/images/crops/chilli.png')
-          }
-          style={styles.cropPhoto}
-          contentFit="cover"
-          transition={180}
-        />
-        <View style={styles.photoOverlay} />
-      </View>
-
-      <View style={styles.cropCopy}>
-        <Text style={styles.cropTitle}>{crop.title}</Text>
-        <Text style={styles.cropSubtitle}>{crop.subtitle}</Text>
-        <View style={styles.chipWrap}>
-          {chips.map((chip) => (
-            <View key={chip} style={styles.chip}>
-              <AppIcon name={icons.check} size={12} color={colors.primary} />
-              <Text style={styles.chipText}>{chip}</Text>
-            </View>
-          ))}
-        </View>
-      </View>
-
-      <View style={styles.arrowCircle}>
-        <AppIcon name={icons.arrow} size={18} color={colors.primary} />
-      </View>
-    </Pressable>
-  );
-}
-
 export default function SelectCropScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -192,17 +94,25 @@ export default function SelectCropScreen() {
           </View>
         </View>
 
-        <View style={styles.heroCard}>
-          <View>
-            <Text style={styles.heroEyebrow}>FPS Farmer Advisory</Text>
-            <Text style={styles.heroTitle}>Expert crop care starts here</Text>
-          </View>
-          <HeroIllustration />
-        </View>
+        <HeroCard
+          eyebrow="FPS Farmer Advisory"
+          title="Expert crop care starts here"
+          subtitle="Choose your crop to unlock tailored stage-wise recommendations."
+        />
 
         <View style={styles.cropList}>
           {crops.map((crop) => (
-            <CropCard key={crop.id} crop={crop} />
+            <CropCard
+              key={crop.id}
+              title={crop.title}
+              image={crop.image}
+              onPress={() =>
+                router.push({
+                  pathname: '/growth-stage',
+                  params: { crop: crop.id },
+                })
+              }
+            />
           ))}
         </View>
 
@@ -229,7 +139,7 @@ export default function SelectCropScreen() {
                 router.push('/');
               }
             }}>
-            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7C8A80'} />
+            <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>
         ))}
@@ -239,28 +149,33 @@ export default function SelectCropScreen() {
 }
 
 const shadow = {
-  shadowColor: '#1B5E20',
+  shadowColor: '#0F2E1C',
   shadowOffset: { width: 0, height: 12 },
   shadowOpacity: 0.08,
   shadowRadius: 18,
   elevation: 5,
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, any> = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: colors.background,
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 12,
+    paddingTop: 0,
     paddingBottom: 120,
   },
   appBar: {
     alignItems: 'flex-start',
+    backgroundColor: colors.primary,
     flexDirection: 'row',
     gap: 14,
+    marginHorizontal: -20,
     marginBottom: 18,
+    paddingHorizontal: 20,
+    paddingTop: 18,
+    paddingBottom: 24,
   },
   backButton: {
     alignItems: 'center',
@@ -278,14 +193,14 @@ const styles = StyleSheet.create({
     paddingTop: 2,
   },
   title: {
-    color: colors.text,
+    color: '#FFFFFF',
     fontSize: 28,
     fontWeight: '900',
     letterSpacing: 0,
     lineHeight: 34,
   },
   subtitle: {
-    color: colors.muted,
+    color: '#DDEFE5',
     fontSize: 15,
     fontWeight: '600',
     letterSpacing: 0,
@@ -375,7 +290,7 @@ const styles = StyleSheet.create({
     width: 13,
   },
   heroLeafLeft: {
-    backgroundColor: '#2E7D32',
+    backgroundColor: '#0F4D2E',
     borderBottomLeftRadius: 10,
     borderTopRightRadius: 10,
     height: 13,
@@ -386,7 +301,7 @@ const styles = StyleSheet.create({
     width: 9,
   },
   heroLeafRight: {
-    backgroundColor: '#66BB6A',
+    backgroundColor: '#3F7D57',
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
     height: 13,
@@ -440,136 +355,6 @@ const styles = StyleSheet.create({
     height: 34,
     width: 36,
   },
-  cropList: {
-    gap: 16,
-    marginTop: 20,
-  },
-  cropCard: {
-    backgroundColor: colors.card,
-    borderColor: colors.line,
-    borderRadius: 24,
-    borderWidth: 1,
-    minHeight: 216,
-    overflow: 'hidden',
-    padding: 16,
-    ...shadow,
-  },
-  cardPressed: {
-    opacity: 0.86,
-    transform: [{ scale: 0.99 }],
-  },
-  cropIllustrationWrap: {
-    alignItems: 'center',
-    borderRadius: 20,
-    height: 112,
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
-  cropPhoto: {
-    height: '100%',
-    width: '100%',
-  },
-  photoOverlay: {
-    backgroundColor: 'rgba(15, 82, 27, 0.08)',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-  },
-  cropArt: {
-    alignItems: 'center',
-    height: 102,
-    justifyContent: 'flex-end',
-    width: 120,
-  },
-  stemTall: {
-    backgroundColor: '#2E7D32',
-    borderRadius: 3,
-    bottom: 16,
-    height: 66,
-    position: 'absolute',
-    width: 6,
-  },
-  plantLeaf: {
-    backgroundColor: '#43A047',
-    height: 30,
-    position: 'absolute',
-    width: 19,
-  },
-  leafA: {
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    bottom: 55,
-    right: 44,
-    transform: [{ rotate: '-32deg' }],
-  },
-  leafB: {
-    borderBottomRightRadius: 20,
-    borderTopLeftRadius: 20,
-    bottom: 43,
-    left: 44,
-    transform: [{ rotate: '32deg' }],
-  },
-  leafC: {
-    borderBottomLeftRadius: 20,
-    borderTopRightRadius: 20,
-    bottom: 27,
-    right: 45,
-    transform: [{ rotate: '-25deg' }],
-  },
-  cottonBud: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#DDE8DD',
-    borderRadius: 15,
-    borderWidth: 1,
-    height: 30,
-    position: 'absolute',
-    width: 30,
-  },
-  cottonBudA: {
-    bottom: 68,
-    left: 42,
-  },
-  cottonBudB: {
-    bottom: 47,
-    right: 31,
-  },
-  cottonBudC: {
-    bottom: 27,
-    left: 31,
-  },
-  chilliFruit: {
-    backgroundColor: '#E53935',
-    borderBottomLeftRadius: 14,
-    borderBottomRightRadius: 14,
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
-    height: 38,
-    position: 'absolute',
-    width: 14,
-  },
-  chilliA: {
-    bottom: 55,
-    left: 42,
-    transform: [{ rotate: '22deg' }],
-  },
-  chilliB: {
-    bottom: 38,
-    right: 38,
-    transform: [{ rotate: '-18deg' }],
-  },
-  chilliC: {
-    bottom: 24,
-    left: 50,
-    transform: [{ rotate: '8deg' }],
-  },
-  soil: {
-    backgroundColor: '#C99A60',
-    borderRadius: 20,
-    height: 15,
-    width: 82,
-  },
   cropCopy: {
     marginTop: 15,
     paddingRight: 44,
@@ -597,7 +382,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     alignItems: 'center',
-    backgroundColor: '#F1F8F1',
+    backgroundColor: '#DDEFE5',
     borderRadius: 13,
     flexDirection: 'row',
     gap: 5,
@@ -612,7 +397,7 @@ const styles = StyleSheet.create({
   },
   arrowCircle: {
     alignItems: 'center',
-    backgroundColor: '#EAF7EA',
+    backgroundColor: '#DDEFE5',
     borderRadius: 18,
     bottom: 18,
     height: 36,
@@ -661,7 +446,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: colors.card,
-    borderColor: '#DCEADC',
+    borderColor: '#E5E2DA',
     borderRadius: 28,
     borderWidth: 1,
     bottom: 16,
@@ -685,7 +470,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
   navLabel: {
-    color: '#7C8A80',
+    color: '#7A8079',
     fontSize: 11,
     fontWeight: '800',
     letterSpacing: 0,

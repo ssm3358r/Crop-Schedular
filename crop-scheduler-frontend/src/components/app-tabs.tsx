@@ -4,6 +4,10 @@ export default function AppTabs() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
+      <Stack.Screen name="home" />
+      <Stack.Screen name="welcome" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="signup" />
       <Stack.Screen name="explore" />
       <Stack.Screen name="select-crop" />
       <Stack.Screen name="growth-stage" />
@@ -11,6 +15,8 @@ export default function AppTabs() {
       <Stack.Screen name="pest-list" />
       <Stack.Screen name="disease-list" />
       <Stack.Screen name="nutrition-advisory" />
+      <Stack.Screen name="NutritionStagesScreen" />
+      <Stack.Screen name="NutritionDetailScreen" />
     </Stack>
   );
 }

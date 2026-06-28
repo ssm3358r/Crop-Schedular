@@ -1,0 +1,197 @@
+{
+  "crop": "chilli",
+  "displayName": "Chilli",
+  "growingConditions": {
+    "temperature": "16-35°C",
+    "sunlight": "Full Sun",
+    "rainfall": "600-1250 mm/year",
+    "humidity": "50-60%",
+    "waterRequirement": "Intermediate"
+  },
+  "pests": [
+    {
+      "id": "thrips",
+      "name": "Thrips",
+      "stage": [
+        "vegetative",
+        "flowering"
+      ],
+      "imageKey": "thrips",
+      "whatIsIt": "Small slender insects that suck sap from leaves, flowers and tender shoots.",
+      "whenOccurs": [
+        "Hot weather",
+        "Dry weather",
+        "Low humidity",
+        "Early vegetative stage",
+        "Flowering stage"
+      ],
+      "symptoms": [
+        "Curled leaves",
+        "Silvery patches",
+        "Bronze leaves",
+        "Twisted leaves",
+        "Dry leaf margins"
+      ],
+      "damage": [
+        "Reduced plant vigor",
+        "Poor flowering",
+        "Reduced fruit set",
+        "Yield loss"
+      ],
+      "solution": {
+        "cultural": [
+          "Blue sticky traps",
+          "Remove weeds",
+          "Avoid excess nitrogen",
+          "Maintain proper spacing"
+        ],
+        "biological": [
+          "Neem Oil 3-5 ml/L",
+          "Encourage ladybird beetles",
+          "Encourage lacewings"
+        ],
+        "chemical": [
+          "Spinosad 45 SC @ 0.3 ml/L",
+          "Fipronil 5 SC @ 1-1.5 ml/L",
+          "Thiamethoxam 25 WG @ 0.25 g/L"
+        ]
+      }
+    },
+
+    {
+      "id": "mites",
+      "name": "Mites",
+      "stage": [
+        "vegetative",
+        "flowering",
+        "fruit-setting"
+      ],
+      "imageKey": "mites",
+      "whatIsIt": "Tiny spider-like pests attacking young leaves and shoots.",
+      "whenOccurs": [
+        "Hot weather",
+        "Dry weather",
+        "Low humidity"
+      ],
+      "symptoms": [
+        "Downward curling leaves",
+        "Wrinkled leaves",
+        "Bushy appearance",
+        "Stunted growth",
+        "Bronzed leaves"
+      ],
+      "damage": [
+        "Reduced growth",
+        "Poor flowering",
+        "Poor fruit development",
+        "Yield reduction"
+      ],
+      "solution": {
+        "cultural": [
+          "Remove infested leaves",
+          "Maintain irrigation",
+          "Control weeds"
+        ],
+        "biological": [
+          "Neem Oil 3-5 ml/L",
+          "Predatory mites"
+        ],
+        "chemical": [
+          "Spiromesifen 22.9 SC @ 1 ml/L",
+          "Propargite 57 EC @ 2 ml/L",
+          "Fenazaquin 10 EC @ 1 ml/L"
+        ]
+      }
+    },
+
+    {
+      "id": "fruit-borer",
+      "name": "Fruit Borer",
+      "scientificName": "Helicoverpa armigera",
+      "stage": [
+        "flowering",
+        "fruit-setting",
+        "fruit-development"
+      ],
+      "imageKey": "fruit-borer",
+      "whatIsIt": "Caterpillar pest attacking chilli flowers and fruits.",
+      "whenOccurs": [
+        "Flowering stage",
+        "Fruiting stage",
+        "Warm weather"
+      ],
+      "symptoms": [
+        "Holes in fruits",
+        "Larvae inside fruits",
+        "Fruit drop",
+        "Excreta near holes"
+      ],
+      "damage": [
+        "Fruit damage",
+        "Yield loss",
+        "Reduced market value"
+      ],
+      "solution": {
+        "cultural": [
+          "Destroy damaged fruits",
+          "Install pheromone traps"
+        ],
+        "biological": [
+          "Trichogramma release",
+          "NSKE 5%"
+        ],
+        "chemical": [
+          "Emamectin Benzoate 5 SG @ 0.4 g/L",
+          "Spinosad 45 SC @ 0.3 ml/L",
+          "Chlorantraniliprole 18.5 SC @ 0.3 ml/L"
+        ]
+      }
+    },
+
+    {
+      "id": "whitefly",
+      "name": "Whitefly",
+      "scientificName": "Bemisia tabaci",
+      "stage": [
+        "nursery",
+        "vegetative",
+        "flowering",
+        "fruit-setting"
+      ],
+      "imageKey": "whitefly-chilli",
+      "whatIsIt": "Sap-sucking insect and major vector of Chilli Leaf Curl Virus.",
+      "whenOccurs": [
+        "Warm weather",
+        "Dry weather",
+        "Entire crop season"
+      ],
+      "symptoms": [
+        "Yellow leaves",
+        "Leaf curling",
+        "Honeydew secretion",
+        "Black sooty mold"
+      ],
+      "damage": [
+        "Reduced growth",
+        "Reduced fruit size",
+        "Virus transmission",
+        "Yield loss"
+      ],
+      "solution": {
+        "cultural": [
+          "Yellow sticky traps",
+          "Remove weeds",
+          "Healthy seedlings"
+        ],
+        "biological": [
+          "Neem Oil 3-5 ml/L"
+        ],
+        "chemical": [
+          "Thiamethoxam 25 WG @ 0.25 g/L",
+          "Imidacloprid 17.8 SL @ 0.3 ml/L",
+          "Acetamiprid 20 SP @ 0.2 g/L"
+        ]
+      }
+    }
+  ]
+}

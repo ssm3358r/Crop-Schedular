@@ -1,0 +1,82 @@
+{
+  "crop": "chilli",
+  "category": "nutrition",
+  "nutritionStages": [
+    {
+      "id": "nursery",
+      "name": "Nursery Stage",
+      "days": "0-30",
+      "objective": "Healthy seedling establishment",
+      "recommendations": [
+        "FYM/Vermicompost",
+        "Phosphorus application",
+        "Trichoderma viride",
+        "19:19:19 @ 3-5 g/L if seedlings are weak"
+      ]
+    },
+    {
+      "id": "transplanting",
+      "name": "Transplanting Stage",
+      "days": "0-15 DAT",
+      "objective": "Root establishment",
+      "recommendations": [
+        "FYM 8-10 tons/acre",
+        "Basal NPK",
+        "Humic Acid 2-3 ml/L"
+      ]
+    },
+    {
+      "id": "vegetative",
+      "name": "Vegetative Growth",
+      "days": "15-40 DAT",
+      "objective": "Branching and leaf growth",
+      "recommendations": [
+        "Split nitrogen doses",
+        "19:19:19 @ 5 g/L every 10-15 days",
+        "Micronutrients if required"
+      ]
+    },
+    {
+      "id": "flowering",
+      "name": "Flowering Stage",
+      "days": "40-60 DAT",
+      "objective": "Flower retention and pollination",
+      "recommendations": [
+        "19:19:19 @ 5 g/L",
+        "Boron @ 1 g/L",
+        "Calcium Nitrate @ 5 g/L"
+      ]
+    },
+    {
+      "id": "fruit-setting",
+      "name": "Fruit Setting Stage",
+      "days": "60-80 DAT",
+      "objective": "Fruit retention",
+      "recommendations": [
+        "13:00:45 @ 5-10 g/L",
+        "Calcium Nitrate @ 5 g/L"
+      ]
+    },
+    {
+      "id": "fruit-development",
+      "name": "Fruit Development Stage",
+      "days": "80-120 DAT",
+      "objective": "Fruit size and color",
+      "recommendations": [
+        "13:00:45 @ 5-10 g/L every 10-15 days",
+        "Micronutrients if deficient"
+      ]
+    },
+    {
+      "id": "harvesting",
+      "name": "Harvesting Stage",
+      "objective": "Maintain productivity",
+      "recommendations": [
+        "Light nitrogen dose",
+        "Potash application",
+        "Regular irrigation",
+        "Remove damaged fruits"
+      ]
+    }
+  ]
+}
