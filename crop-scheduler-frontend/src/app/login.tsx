@@ -1,4 +1,5 @@
-import { router } from 'expo-router';
+import axios from 'axios';
+import { Redirect, router } from 'expo-router';
 import { useState } from 'react';
 import {
   KeyboardAvoidingView,
@@ -11,14 +12,68 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAuth } from '@/components/auth/AuthProvider';
 import { AuthLogo } from '@/components/AuthLogo';
 import { colors } from '@/constants/colors';
 
 const signupRoute = '/signup' as never;
 const homeRoute = '/home' as never;
 
+function getErrorMessage(error: unknown) {
+  if (axios.isAxiosError(error)) {
+    const data = error.response?.data;
+
+    if (typeof data === 'string') {
+      return data;
+    }
+
+    if (data && typeof data === 'object') {
+      const messages = Object.values(data)
+        .flatMap((value) => (Array.isArray(value) ? value : [value]))
+        .filter((value): value is string => typeof value === 'string');
+
+      if (messages.length > 0) {
+        return messages[0];
+      }
+    }
+  }
+
+  return 'Unable to sign in right now. Please try again.';
+}
+
 export default function LoginScreen() {
+  const { isAuthenticated, isHydrating, login } = useAuth();
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  if (isHydrating) {
+    return null;
+  }
+
+  if (isAuthenticated) {
+    return <Redirect href="/home" />;
+  }
+
+  async function handleLogin() {
+    if (!phone.trim() || !password) {
+      setErrorMessage('Please enter your phone number and password.');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setErrorMessage('');
+      await login({ phone: phone.trim(), password });
+      router.replace(homeRoute);
+    } catch (error) {
+      setErrorMessage(getErrorMessage(error));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -32,29 +87,36 @@ export default function LoginScreen() {
         </View>
 
         <View style={styles.card}>
-          <Text style={styles.label}>Username</Text>
+          <Text style={styles.label}>Phone Number</Text>
           <TextInput
             autoCapitalize="none"
-            placeholder="Enter your username"
+            keyboardType="phone-pad"
+            onChangeText={setPhone}
+            placeholder="Enter your phone number"
             placeholderTextColor="#878B83"
             style={styles.input}
+            value={phone}
           />
 
           <Text style={styles.label}>Password</Text>
           <View style={styles.inputWithAction}>
             <TextInput
+              onChangeText={setPassword}
               placeholder="Enter your password"
               placeholderTextColor="#878B83"
               secureTextEntry={!showPassword}
               style={styles.flexInput}
+              value={password}
             />
             <Pressable onPress={() => setShowPassword((value) => !value)} hitSlop={10}>
               <Text style={styles.showText}>{showPassword ? 'Hide' : 'Show'}</Text>
             </Pressable>
           </View>
 
-          <Pressable style={styles.primaryButton} onPress={() => router.replace(homeRoute)}>
-            <Text style={styles.primaryText}>Sign In</Text>
+          {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+
+          <Pressable style={[styles.primaryButton, isSubmitting && styles.buttonDisabled]} onPress={handleLogin} disabled={isSubmitting}>
+            <Text style={styles.primaryText}>{isSubmitting ? 'Signing In...' : 'Sign In'}</Text>
           </Pressable>
         </View>
 
@@ -67,7 +129,7 @@ export default function LoginScreen() {
           <Text style={styles.guestText}>Continue without login</Text>
         </Pressable>
 
-        <Text style={styles.version}>Farm Prosperity Solutions · v2.0</Text>
+        <Text style={styles.version}>Farm Prosperity Solutions | v2.0</Text>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -162,6 +224,12 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     letterSpacing: 0,
   },
+  errorText: {
+    color: '#B42318',
+    fontSize: 14,
+    fontWeight: '700',
+    marginTop: 14,
+  },
   primaryButton: {
     alignItems: 'center',
     backgroundColor: colors.primary,
@@ -169,6 +237,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 28,
     minHeight: 62,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
   },
   primaryText: {
     color: '#FFFFFF',
@@ -197,9 +268,9 @@ const styles = StyleSheet.create({
   },
   guestButton: {
     alignItems: 'center',
-    minHeight: 36,
     justifyContent: 'center',
     marginTop: 8,
+    minHeight: 36,
   },
   guestText: {
     color: colors.primary,

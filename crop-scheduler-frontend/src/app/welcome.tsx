@@ -1,7 +1,8 @@
-import { router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAuth } from '@/components/auth/AuthProvider';
 import { AuthLogo } from '@/components/AuthLogo';
 import { colors } from '@/constants/colors';
 
@@ -10,6 +11,16 @@ const signupRoute = '/signup' as never;
 const homeRoute = '/home' as never;
 
 export default function WelcomeScreen() {
+  const { isAuthenticated, isHydrating } = useAuth();
+
+  if (isHydrating) {
+    return null;
+  }
+
+  if (isAuthenticated) {
+    return <Redirect href="/home" />;
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.hero}>
@@ -30,7 +41,7 @@ export default function WelcomeScreen() {
         <Pressable style={styles.skipButton} onPress={() => router.replace(homeRoute)}>
           <Text style={styles.skipText}>Continue without login</Text>
         </Pressable>
-        <Text style={styles.version}>Farm Prosperity Solutions · v2.0</Text>
+        <Text style={styles.version}>Farm Prosperity Solutions | v2.0</Text>
       </View>
     </SafeAreaView>
   );
@@ -89,8 +100,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.primary,
     borderRadius: 16,
-    minHeight: 64,
     justifyContent: 'center',
+    minHeight: 64,
   },
   primaryText: {
     color: '#FFFFFF',
@@ -104,8 +115,8 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     borderRadius: 16,
     borderWidth: 2,
-    minHeight: 64,
     justifyContent: 'center',
+    minHeight: 64,
   },
   secondaryText: {
     color: colors.primary,
@@ -116,8 +127,8 @@ const styles = StyleSheet.create({
   },
   skipButton: {
     alignItems: 'center',
-    minHeight: 34,
     justifyContent: 'center',
+    minHeight: 34,
   },
   skipText: {
     color: colors.muted,

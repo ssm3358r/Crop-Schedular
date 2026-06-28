@@ -1,4 +1,5 @@
 import os
+import socket
 from datetime import timedelta
 from pathlib import Path
 
@@ -16,9 +17,27 @@ def get_env_list(name: str, default: str = "") -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()]
 
 
+def get_local_hosts() -> list[str]:
+    hosts = {"127.0.0.1", "localhost", "0.0.0.0"}
+
+    try:
+        hostname = socket.gethostname()
+        hosts.add(hostname)
+        for address in socket.gethostbyname_ex(hostname)[2]:
+            if address:
+                hosts.add(address)
+    except OSError:
+        pass
+
+    return sorted(hosts)
+
+
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() == "true"
 ALLOWED_HOSTS = get_env_list("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost")
+
+if DEBUG:
+    ALLOWED_HOSTS = sorted(set(ALLOWED_HOSTS + get_local_hosts()))
 
 
 INSTALLED_APPS = [

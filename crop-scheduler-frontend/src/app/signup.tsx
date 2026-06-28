@@ -1,4 +1,5 @@
-import { router } from 'expo-router';
+import axios from 'axios';
+import { Redirect, router } from 'expo-router';
 import { useState } from 'react';
 import {
   KeyboardAvoidingView,
@@ -12,27 +13,50 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAuth } from '@/components/auth/AuthProvider';
 import { AuthLogo } from '@/components/AuthLogo';
 import { colors } from '@/constants/colors';
 
 const loginRoute = '/login' as never;
 const homeRoute = '/home' as never;
 
-function SectionTitle({ children }: { children: string }) {
-  return <Text style={styles.sectionTitle}>{children}</Text>;
+function getErrorMessage(error: unknown) {
+  if (axios.isAxiosError(error)) {
+    const data = error.response?.data;
+
+    if (typeof data === 'string') {
+      return data;
+    }
+
+    if (data && typeof data === 'object') {
+      const messages = Object.values(data)
+        .flatMap((value) => (Array.isArray(value) ? value : [value]))
+        .filter((value): value is string => typeof value === 'string');
+
+      if (messages.length > 0) {
+        return messages[0];
+      }
+    }
+  }
+
+  return 'Unable to create your account right now. Please try again.';
 }
 
 function Field({
   label,
   placeholder,
+  value,
+  onChangeText,
   optional,
   keyboardType,
   autoCapitalize,
 }: {
   label: string;
   placeholder: string;
+  value: string;
+  onChangeText: (value: string) => void;
   optional?: boolean;
-  keyboardType?: 'default' | 'email-address' | 'phone-pad';
+  keyboardType?: 'default' | 'phone-pad' | 'numeric';
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 }) {
   return (
@@ -44,15 +68,27 @@ function Field({
       <TextInput
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
+        onChangeText={onChangeText}
         placeholder={placeholder}
         placeholderTextColor="#878B83"
         style={styles.input}
+        value={value}
       />
     </View>
   );
 }
 
-function PasswordField({ label, placeholder }: { label: string; placeholder: string }) {
+function PasswordField({
+  label,
+  placeholder,
+  value,
+  onChangeText,
+}: {
+  label: string;
+  placeholder: string;
+  value: string;
+  onChangeText: (value: string) => void;
+}) {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -60,12 +96,14 @@ function PasswordField({ label, placeholder }: { label: string; placeholder: str
       <Text style={styles.label}>{label}</Text>
       <View style={styles.inputWithAction}>
         <TextInput
+          onChangeText={onChangeText}
           placeholder={placeholder}
           placeholderTextColor="#878B83"
           secureTextEntry={!visible}
           style={styles.flexInput}
+          value={value}
         />
-        <Pressable onPress={() => setVisible((value) => !value)} hitSlop={10}>
+        <Pressable onPress={() => setVisible((currentValue) => !currentValue)} hitSlop={10}>
           <Text style={styles.showText}>{visible ? 'Hide' : 'Show'}</Text>
         </Pressable>
       </View>
@@ -73,53 +111,109 @@ function PasswordField({ label, placeholder }: { label: string; placeholder: str
   );
 }
 
+function SectionTitle({ children }: { children: string }) {
+  return <Text style={styles.sectionTitle}>{children}</Text>;
+}
+
 export default function SignupScreen() {
+  const { isAuthenticated, isHydrating, signup } = useAuth();
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [area, setArea] = useState('');
+  const [stateName, setStateName] = useState('');
+  const [district, setDistrict] = useState('');
+  const [village, setVillage] = useState('');
+  const [landArea, setLandArea] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  if (isHydrating) {
+    return null;
+  }
+
+  if (isAuthenticated) {
+    return <Redirect href="/home" />;
+  }
+
+  async function handleSignup() {
+    if (!name.trim() || !phone.trim() || !password) {
+      setErrorMessage('Name, phone number, and password are required.');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Password and confirm password must match.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setErrorMessage('Password must be at least 6 characters long.');
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setErrorMessage('');
+      await signup({
+        name: name.trim(),
+        phone: phone.trim(),
+        password,
+        area: area.trim() || undefined,
+        state: stateName.trim() || undefined,
+        district: district.trim() || undefined,
+        village: village.trim() || undefined,
+        land_area: landArea.trim() || undefined,
+      });
+      router.replace(homeRoute);
+    } catch (error) {
+      setErrorMessage(getErrorMessage(error));
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         style={styles.keyboard}>
         <ScrollView
-          showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.content}
-          keyboardShouldPersistTaps="handled">
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <AuthLogo size={86} />
             <Text style={styles.title}>Create Account</Text>
-            <Text style={styles.subtitle}>Get our farming advice</Text>
+            <Text style={styles.subtitle}>Create your farmer account</Text>
           </View>
 
           <View style={styles.card}>
             <SectionTitle>Personal Info</SectionTitle>
-            <Field label="Full Name" placeholder="Ravi Kumar" autoCapitalize="words" />
-            <Field label="Phone Number" placeholder="+91 98765 43210" keyboardType="phone-pad" />
-            <Field
-              label="Email"
-              placeholder="ravi@example.com"
-              optional
-              keyboardType="email-address"
-              autoCapitalize="none"
-            />
+            <Field label="Full Name" placeholder="Ravi Kumar" value={name} onChangeText={setName} autoCapitalize="words" />
+            <Field label="Phone Number" placeholder="9876543210" value={phone} onChangeText={setPhone} keyboardType="phone-pad" />
 
             <View style={styles.divider} />
 
             <SectionTitle>Account</SectionTitle>
-            <Field
-              label="Username"
-              placeholder="e.g. rajesh_nanded"
-              autoCapitalize="none"
-            />
-            <PasswordField label="Password" placeholder="Min. 8 characters" />
-            <PasswordField label="Confirm Password" placeholder="Re-enter password" />
+            <PasswordField label="Password" placeholder="Min. 6 characters" value={password} onChangeText={setPassword} />
+            <PasswordField label="Confirm Password" placeholder="Re-enter password" value={confirmPassword} onChangeText={setConfirmPassword} />
 
             <View style={styles.divider} />
 
-            <SectionTitle>Details</SectionTitle>
-            <Field label="Region" placeholder="e.g. Nanded, Guntur" autoCapitalize="words" />
+            <SectionTitle>Farm Details</SectionTitle>
+            <Field label="Area" placeholder="e.g. 12 acres" value={area} onChangeText={setArea} optional autoCapitalize="words" />
+            <Field label="State" placeholder="Telangana" value={stateName} onChangeText={setStateName} optional autoCapitalize="words" />
+            <Field label="District" placeholder="Warangal" value={district} onChangeText={setDistrict} optional autoCapitalize="words" />
+            <Field label="Village" placeholder="Your village" value={village} onChangeText={setVillage} optional autoCapitalize="words" />
+            <Field label="Land Area" placeholder="2.5" value={landArea} onChangeText={setLandArea} optional keyboardType="numeric" />
+
+            {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
           </View>
 
-          <Pressable style={styles.primaryButton} onPress={() => router.replace(homeRoute)}>
-            <Text style={styles.primaryText}>Create Account</Text>
+          <Pressable style={[styles.primaryButton, isSubmitting && styles.buttonDisabled]} onPress={handleSignup} disabled={isSubmitting}>
+            <Text style={styles.primaryText}>{isSubmitting ? 'Creating Account...' : 'Create Account'}</Text>
           </Pressable>
 
           <Pressable style={styles.altRow} onPress={() => router.push(loginRoute)}>
@@ -264,6 +358,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     marginTop: 30,
   },
+  errorText: {
+    color: '#B42318',
+    fontSize: 14,
+    fontWeight: '700',
+    marginTop: 18,
+  },
   primaryButton: {
     alignItems: 'center',
     backgroundColor: colors.primary,
@@ -271,6 +371,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 26,
     minHeight: 62,
+  },
+  buttonDisabled: {
+    opacity: 0.7,
   },
   primaryText: {
     color: '#FFFFFF',

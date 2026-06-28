@@ -4,8 +4,9 @@ import type { SymbolViewProps } from 'expo-symbols';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors } from '@/constants/colors';
 import { HeroCard } from '@/components/HeroCard';
+import { useAuth } from '@/components/auth/AuthProvider';
+import { colors } from '@/constants/colors';
 
 const icons = {
   advisory: { ios: 'leaf.fill', android: 'grass', web: 'grass' },
@@ -18,13 +19,14 @@ const icons = {
   products: { ios: 'testtube.2', android: 'inventory_2', web: 'inventory_2' },
   profile: { ios: 'person.fill', android: 'person', web: 'person' },
   videos: { ios: 'play.rectangle.fill', android: 'smart_display', web: 'smart_display' },
+  logout: { ios: 'rectangle.portrait.and.arrow.right', android: 'logout', web: 'logout' },
 } satisfies Record<string, SymbolViewProps['name']>;
 
 const features = [
   {
     icon: icons.advisory,
     title: 'Crop Advisory',
-    subtitle: 'Pest • Disease • Nutrition',
+    subtitle: 'Pest | Disease | Nutrition',
     description: 'Get stage-wise crop recommendations for Cotton and Chilli.',
     color: colors.mint,
     accent: colors.primary,
@@ -76,14 +78,7 @@ function AppIcon({
   size?: number;
   color?: string;
 }) {
-  return (
-    <SymbolView
-      name={name}
-      size={size}
-      tintColor={color}
-      type="hierarchical"
-    />
-  );
+  return <SymbolView name={name} size={size} tintColor={color} type="hierarchical" />;
 }
 
 function FeatureIllustration({ accent }: { accent: string }) {
@@ -126,12 +121,20 @@ function VideoThumb({ color }: { color: string }) {
 }
 
 export default function HomeScreen() {
+  const { session, logout } = useAuth();
+  const firstName = session?.user.first_name?.trim();
+  const fallbackName = session?.user.farmer_profile?.name?.trim();
+  const displayName = firstName || fallbackName || 'Farmer';
+  const isGuest = !session;
+
+  async function handleLogout() {
+    await logout();
+    router.replace('/welcome');
+  }
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.content}
-        style={styles.screen}>
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false} style={styles.screen}>
         <View style={styles.header}>
           <View style={styles.logoWrap}>
             <View style={styles.logoMark}>
@@ -142,16 +145,25 @@ export default function HomeScreen() {
               <Text style={styles.appTag}>Smart crop care</Text>
             </View>
           </View>
-          <Pressable style={styles.notificationButton}>
-            <AppIcon name={icons.bell} size={20} color={colors.text} />
-            <View style={styles.notificationDot} />
-          </Pressable>
+          <View style={styles.headerActions}>
+            {!isGuest ? (
+              <Pressable style={styles.logoutButton} onPress={handleLogout}>
+                <AppIcon name={icons.logout} size={18} color={colors.text} />
+              </Pressable>
+            ) : null}
+            <Pressable style={styles.notificationButton}>
+              <AppIcon name={icons.bell} size={20} color={colors.text} />
+              <View style={styles.notificationDot} />
+            </Pressable>
+          </View>
         </View>
 
         <View style={styles.greetingBlock}>
-          <Text style={styles.greeting}>Good Morning 👋</Text>
-          <Text style={styles.welcome}>Welcome, Mohit</Text>
-          <Text style={styles.subtitle}>Let&apos;s keep your crops healthy today.</Text>
+          <Text style={styles.greeting}>Good Morning</Text>
+          <Text style={styles.welcome}>Welcome, {displayName}</Text>
+          <Text style={styles.subtitle}>
+            {isGuest ? 'Explore the app or sign in to save your profile.' : 'Your account is connected and ready.'}
+          </Text>
         </View>
 
         <HeroCard
@@ -169,12 +181,12 @@ export default function HomeScreen() {
           {features.map((feature) => (
             <Pressable
               key={feature.title}
-              style={styles.featureCard}
               onPress={() => {
                 if (feature.title === 'Crop Advisory') {
                   router.push('/select-crop');
                 }
-              }}>
+              }}
+              style={styles.featureCard}>
               <View style={styles.featureTop}>
                 <View style={[styles.featureIcon, { backgroundColor: feature.color }]}>
                   <AppIcon name={feature.icon} color={feature.accent} />
@@ -195,7 +207,7 @@ export default function HomeScreen() {
           <Text style={styles.sectionTitle}>Latest Advisory</Text>
           <Text style={styles.sectionAction}>View all</Text>
         </View>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
+        <ScrollView contentContainerStyle={styles.horizontalList} horizontal showsHorizontalScrollIndicator={false}>
           {advisories.map((item) => (
             <View key={item.title} style={styles.advisoryCard}>
               <PestImage tint={item.tint} pest={item.pest} />
@@ -269,6 +281,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 22,
   },
+  headerActions: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+  },
   logoWrap: {
     alignItems: 'center',
     flexDirection: 'row',
@@ -300,6 +317,17 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     letterSpacing: 0,
     marginTop: 2,
+  },
+  logoutButton: {
+    alignItems: 'center',
+    backgroundColor: colors.card,
+    borderColor: colors.line,
+    borderRadius: 18,
+    borderWidth: 1,
+    height: 48,
+    justifyContent: 'center',
+    width: 48,
+    ...shadow,
   },
   notificationButton: {
     alignItems: 'center',
@@ -347,46 +375,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     lineHeight: 22,
     marginTop: 4,
-  },
-  banner: {
-    borderColor: colors.line,
-    borderRadius: 20,
-    borderWidth: 1,
-    flexDirection: 'row',
-    minHeight: 176,
-    overflow: 'hidden',
-    padding: 18,
-    ...shadow,
-  },
-  bannerCopy: {
-    flex: 1,
-    justifyContent: 'space-between',
-    paddingVertical: 2,
-    zIndex: 2,
-  },
-  bannerTitle: {
-    color: colors.text,
-    fontSize: 23,
-    fontWeight: '900',
-    letterSpacing: 0,
-    lineHeight: 29,
-    maxWidth: 210,
-  },
-  primaryButton: {
-    alignItems: 'center',
-    alignSelf: 'flex-start',
-    backgroundColor: colors.primary,
-    borderRadius: 18,
-    flexDirection: 'row',
-    gap: 8,
-    minHeight: 48,
-    paddingHorizontal: 18,
-  },
-  primaryButtonText: {
-    color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '800',
-    letterSpacing: 0,
   },
   featureGrid: {
     gap: 14,
@@ -599,9 +587,9 @@ const styles = StyleSheet.create({
   viewButton: {
     backgroundColor: colors.mint,
     borderRadius: 13,
+    justifyContent: 'center',
     minHeight: 32,
     paddingHorizontal: 14,
-    justifyContent: 'center',
   },
   viewButtonText: {
     color: colors.primary,
@@ -735,8 +723,8 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     flex: 1,
     gap: 4,
-    minHeight: 58,
     justifyContent: 'center',
+    minHeight: 58,
   },
   navItemActive: {
     backgroundColor: colors.primary,
