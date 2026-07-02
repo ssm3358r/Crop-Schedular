@@ -137,6 +137,8 @@ export default function SelectCropScreen() {
             onPress={() => {
               if (item.label === 'Home') {
                 router.push('/');
+              } else if (item.label === 'Profile') {
+                router.push('/profile');
               }
             }}>
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : '#7A8079'} />

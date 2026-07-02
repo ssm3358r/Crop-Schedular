@@ -244,7 +244,14 @@ export default function HomeScreen() {
 
       <View style={styles.bottomNav}>
         {navItems.map((item) => (
-          <Pressable key={item.label} style={[styles.navItem, item.active && styles.navItemActive]}>
+          <Pressable
+            key={item.label}
+            style={[styles.navItem, item.active && styles.navItemActive]}
+            onPress={() => {
+              if (item.label === 'Profile') {
+                router.push('/profile');
+              }
+            }}>
             <AppIcon name={item.icon} size={20} color={item.active ? '#FFFFFF' : colors.inactive} />
             <Text style={[styles.navLabel, item.active && styles.navLabelActive]}>{item.label}</Text>
           </Pressable>

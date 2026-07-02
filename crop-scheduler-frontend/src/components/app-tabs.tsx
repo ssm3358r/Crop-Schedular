@@ -8,6 +8,7 @@ export default function AppTabs() {
       <Stack.Screen name="welcome" />
       <Stack.Screen name="login" />
       <Stack.Screen name="signup" />
+      <Stack.Screen name="profile" />
       <Stack.Screen name="explore" />
       <Stack.Screen name="select-crop" />
       <Stack.Screen name="growth-stage" />

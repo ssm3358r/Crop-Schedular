@@ -16,6 +16,8 @@ export type AuthUser = {
   username: string;
   first_name: string;
   last_name: string;
+  date_joined?: string | null;
+  last_login?: string | null;
   is_staff: boolean;
   is_superuser: boolean;
   role: 'admin' | 'farmer' | 'user';

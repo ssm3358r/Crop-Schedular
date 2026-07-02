@@ -36,7 +36,18 @@ class AuthenticatedUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["id", "username", "first_name", "last_name", "is_staff", "is_superuser", "role", "farmer_profile"]
+        fields = [
+            "id",
+            "username",
+            "first_name",
+            "last_name",
+            "date_joined",
+            "last_login",
+            "is_staff",
+            "is_superuser",
+            "role",
+            "farmer_profile",
+        ]
 
     def get_role(self, user):
         if user.is_staff or user.is_superuser:

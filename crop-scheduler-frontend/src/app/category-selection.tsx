@@ -220,6 +220,8 @@ export default function CategorySelectionScreen() {
             onPress={() => {
               if (item.label === 'Home') {
                 router.push('/');
+              } else if (item.label === 'Profile') {
+                router.push('/profile');
               }
             }}>
             <AppIcon name={item.icon} size={22} color={item.active ? '#FFFFFF' : '#7A7F78'} />
